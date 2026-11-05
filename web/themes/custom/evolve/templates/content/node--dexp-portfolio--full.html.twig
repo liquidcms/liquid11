@@ -1,0 +1,53 @@
+{#
+/**
+ * @file
+ * Portfolio item page (D7 node--dexp_portfolio.tpl.php + field templates for images, categories, site).
+ */
+#}
+{% set images = portfolio_image_items %}
+{% set carousel_id = 'dexp_carousel-' ~ node.id %}
+<div{{ attributes.addClass('node', 'node-dexp-portfolio', 'clearfix', 'row').setAttribute('id', 'node-' ~ node.id) }}>
+  <div class="content">
+    <div class="portfolio-image col-lg-7">
+      {% if images|length > 1 %}
+        <div id="{{ carousel_id }}" class="carousel slide dexp_carousel field field-name-field-portfolio-images" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            {% for item in images %}
+              <div class="carousel-item field-item{{ loop.first ? ' active' }}">{{ item }}</div>
+            {% endfor %}
+          </div>
+          <a class="carousel-control-prev carousel-control left" href="#{{ carousel_id }}" data-bs-slide="prev"><span class="fa fa-angle-left"></span></a>
+          <a class="carousel-control-next carousel-control right" href="#{{ carousel_id }}" data-bs-slide="next"><span class="fa fa-angle-right"></span></a>
+        </div>
+      {% else %}
+        {{ content.field_portfolio_images }}
+      {% endif %}
+    </div>
+    <div class="portfolio-image col-lg-5">
+      <h3 class="headline">{{ 'Job Description'|t }}</h3>
+      <span class="brd-headling"></span>
+      <div class="clearfix"></div>
+      {{ content.body }}
+      <h3 class="headline">{{ 'Project Details'|t }}</h3>
+      <span class="brd-headling"></span>
+      <div class="clearfix"></div>
+      <div class="field field-name-field-portfolio-categories">
+        <ul class="list-2 field-items">
+          {% for term in node.field_portfolio_categories %}
+            <li class="field-item">{{ term.entity.label }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="clearfix"></div>
+      {% for link in node.field_site %}
+        <div class="field field-name-field-site"><div class="field-items">
+          {% if link.uri and link.uri != 'route:<nolink>' %}
+            <a href="{{ link.uri }}" target="_blank" class="dexp-shortcodes-button btn line-color btn-link">{{ link.title }} <i class="fa fa-arrow-right"></i></a>
+          {% else %}
+            <div><b>[{{ link.title }}]</b></div>
+          {% endif %}
+        </div></div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

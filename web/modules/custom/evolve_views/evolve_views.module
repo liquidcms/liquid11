@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * @file
+ * Views styles ported from the D7 drupalexp modules for the Evolve theme.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function evolve_views_theme($existing, $type, $theme, $path) {
+  return [
+    'views_view_dexp_bxslider' => [
+      'variables' => ['view' => NULL, 'options' => [], 'rows' => [], 'title' => NULL, 'slider_id' => NULL],
+    ],
+    'views_view_dexp_portfolio' => [
+      'variables' => ['view' => NULL, 'options' => [], 'rows' => [], 'title' => NULL, 'view_id' => NULL, 'filter_id' => NULL, 'categories' => []],
+    ],
+    'views_view_dexp_grid' => [
+      'variables' => ['view' => NULL, 'options' => [], 'rows' => [], 'title' => NULL],
+    ],
+  ];
+}
+
+/**
+ * Prepares variables for the bxslider style: groups rows into slides.
+ */
+function template_preprocess_views_view_dexp_bxslider(array &$variables): void {
+  $per_slide = max(1, (int) ($variables['view']->style_plugin->options['rows'] ?? 1));
+  $variables['slides'] = array_chunk($variables['rows'], $per_slide);
+}
+
+/**
+ * Prepares variables for the grid style: Bootstrap column classes.
+ */
+function template_preprocess_views_view_dexp_grid(array &$variables): void {
+  $o = $variables['view']->style_plugin->options;
+  $variables['col_classes'] = sprintf('col-xl-%d col-lg-%d col-md-%d col-%d',
+    round(12 / $o['grid_cols_lg']), round(12 / $o['grid_cols_md']), round(12 / $o['grid_cols_sm']), round(12 / $o['grid_cols_xs']));
+}

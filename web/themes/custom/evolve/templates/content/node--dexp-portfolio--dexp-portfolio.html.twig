@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Portfolio grid/carousel item (D7 node--dexp_portfolio--dexp_portfolio.tpl.php).
+ *
+ * portfolio_images (original image URLs) is set in evolve_preprocess_node().
+ */
+#}
+<div{{ attributes.addClass('node', 'node-dexp-portfolio', 'clearfix').setAttribute('id', 'node-' ~ node.id) }}>
+  <div class="content">
+    {% for image in portfolio_images|slice(1) %}
+      <a href="{{ image }}" rel="lightbox[portfolio_{{ node.id }}]" style="display:none">&nbsp;</a>
+    {% endfor %}
+    <div class="portfolio-image">
+      {{ content.field_portfolio_images.0 }}
+      <div class="mediaholder"></div>
+      <div class="portfolio-image-zoom">
+        <a href="{{ portfolio_images|first }}" rel="lightbox[portfolio_{{ node.id }}]"><span class="fa fa-search"></span></a>
+      </div>
+    </div>
+    <div class="item-description">
+      <h5><a href="{{ url }}">{{ label }}</a></h5>
+      <div class="description">{{ content.body }}</div>
+    </div>
+  </div>
+</div>

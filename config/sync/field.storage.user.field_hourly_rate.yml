@@ -1,0 +1,22 @@
+uuid: 4e63d5e0-bfa1-4d68-844d-11982c5b2106
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+_core:
+  default_config_hash: XD6RRM9c0aMYg4ZlwCskK5CIJoKXOju_Oqi1NZCUYPo
+id: user.field_hourly_rate
+field_name: field_hourly_rate
+entity_type: user
+type: decimal
+settings:
+  precision: 10
+  scale: 2
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

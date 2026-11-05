@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - liquid_timesheets
+id: timesheet_mark_imported
+label: 'Mark imported'
+type: timesheet
+plugin: timesheet_mark_imported
+configuration: {  }

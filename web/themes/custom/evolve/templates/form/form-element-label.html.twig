@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Form label with the D7 required marker (span.form-required), which the Evolve CSS colours.
+ */
+#}
+{%
+  set classes = [
+    title_display == 'after' ? 'option',
+    title_display == 'invisible' ? 'visually-hidden element-invisible',
+  ]
+%}
+{% if title is not empty or required -%}
+  <label{{ attributes.addClass(classes) }}>{{ title }}{% if required %} <span class="form-required" title="{{ 'This field is required.'|t }}">*</span>{% endif %}</label>
+{%- endif %}

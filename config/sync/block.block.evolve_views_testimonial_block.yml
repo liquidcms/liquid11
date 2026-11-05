@@ -1,0 +1,29 @@
+uuid: 7612c81d-47b4-4eaf-bf23-7e40cd22b905
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.testimonial
+  module:
+    - system
+    - views
+  theme:
+    - evolve
+id: evolve_views_testimonial_block
+theme: evolve
+region: testimonial
+weight: 0
+provider: null
+plugin: 'views_block:testimonial-block'
+settings:
+  id: 'views_block:testimonial-block'
+  label: 'Some of Our Many Happy Clients'
+  label_display: visible
+  provider: views
+  views_label: 'Some of Our Many Happy Clients'
+  items_per_page: null
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

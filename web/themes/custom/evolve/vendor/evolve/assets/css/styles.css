@@ -1,0 +1,67 @@
+@import url(//fonts.googleapis.com/css?family=Raleway);
+
+.pic-el {
+  margin-bottom: 90px;
+  font-size: 15px;
+}
+
+.pic-el a {
+  width: 80px;
+  height: 60px;
+  float: left;
+  text-indent: -999px;
+  overflow: hidden;
+  vertical-align: middle;
+  margin-top: -6px;
+}
+
+.pic-el a.dassoc {
+  background: url(../../assets/images/dassoc.png) center center no-repeat;
+}
+
+.pic-el a.nusphere {
+  background: url(../../assets/images/nusphere.png) center center no-repeat;
+}
+
+.view-portfolio .item-description, .view-latest-projects .item-description {
+  min-height: 65px;
+  padding: 15px 20px 5px;
+}
+
+.view-portfolio .item-description h5, .view-latest-projects .item-description h5 {
+ font-weight: 500;
+}
+
+.default #section-extra-bottom-2 {
+  margin-top: 0px;
+}
+
+.slider-blog .slider-post-content {
+  min-height: 144px;
+}
+
+.view-testimonial .client-name {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.field-item ul:not(.contextual-links) {
+  list-style-type: initial;
+}
+.post-content p {
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.large .post-format h2 {
+  border-bottom: none;
+  padding-bottom: 0px;
+}
+
+.post-format h4.post-date {
+  border-bottom: 1px solid #eceef0;
+}
+
+#first-time {
+  display:none;
+}

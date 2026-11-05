@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Main menu as the D7 dexp_menu dropdown.
+ */
+#}
+{% macro menu_links(items) %}
+  {% if items %}
+    <ul class="menu">
+    {% for item in items %}
+      {% set classes = [
+        loop.first ? 'first',
+        loop.last ? 'last',
+        item.below ? 'expanded' : 'leaf',
+        item.in_active_trail ? 'active-trail',
+      ] %}
+      <li{{ item.attributes.addClass(classes) }}>
+        {{ link(item.title, item.url) }}
+        {% if item.below %}
+          {{ _self.menu_links(item.below) }}
+        {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endmacro %}
+<div class="dexp-dropdown">
+  {{ _self.menu_links(items) }}
+</div>

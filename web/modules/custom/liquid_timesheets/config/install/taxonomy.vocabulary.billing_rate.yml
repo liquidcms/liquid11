@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Billing Rate'
+vid: billing_rate
+description: 'Billing arrangement for a timesheet project (e.g. Fixed Cost Project).'
+weight: 10
+new_revision: false

@@ -1,0 +1,15 @@
+uuid: 2dff0753-80c1-483b-b15d-03263000af56
+langcode: en
+status: true
+dependencies: {  }
+name: porfolio_main
+label: 'porfolio main'
+effects:
+  3ec44e04-ab6b-4f08-8fff-0e42d51064ad:
+    uuid: 3ec44e04-ab6b-4f08-8fff-0e42d51064ad
+    id: image_scale
+    weight: 1
+    data:
+      width: 653
+      height: null
+      upscale: false

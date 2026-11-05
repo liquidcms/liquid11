@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Tabs in the dexp [tabs] shortcode markup, using Bootstrap 5 tab JS.
+ */
+#}
+{% set id = 'dexp_tab_wrapper_' ~ random() %}
+<div id="{{ id }}" class="dexp_tab_wrapper default">
+  <ul class="nav nav-tabs">
+    {% for key, tab in tabs %}
+      <li class="nav-item{{ loop.first ? ' active' }}"><a class="nav-link{{ loop.first ? ' active' }}" href="#{{ id }}-{{ key }}" data-bs-toggle="tab"><i class="tab-icon fa"></i>{{ tab.title }}</a></li>
+    {% endfor %}
+  </ul>
+  <div class="tab-content">
+    {% for key, tab in tabs %}
+      <div id="{{ id }}-{{ key }}" class="tab-pane{{ loop.first ? ' active' }}">{{ tab.content }}</div>
+    {% endfor %}
+  </div>
+</div>
+<div class="clearfix">&nbsp;</div>

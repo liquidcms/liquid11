@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Testimonial slide (D7 node--testimonial--teaser.tpl.php).
+ */
+#}
+<div{{ attributes.addClass('node', 'node-testimonial', 'node-teaser', 'clearfix').setAttribute('id', 'node-' ~ node.id) }}>
+  <div class="content">
+    <div class="row">
+      <div class="col-xl-2 col-lg-2 col-md-3 col-12">
+        <div class="client-image">{{ content.field_image }}</div>
+      </div>
+      <div class="col-xl-10 col-lg-10 col-md-9 col-12">
+        <div class="description"><i class="fa fa-angle-left d-none d-md-block"></i>{{ content.body }}</div>
+        <div class="client-author">
+          <span class="client-name">{{ node.field_client.value }}, {{ node.field_job_title.value }}</span>
+        </div>
+      </div>
+      {% if node.field_linked_article.value %}
+        <div style="text-align:right;margin-top:10px;padding-right:20px;">
+          <a class="button line-color" href="{{ node.field_linked_article.value }}">{{ 'Read Full Quote'|t }}</a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>

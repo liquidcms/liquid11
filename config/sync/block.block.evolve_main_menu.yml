@@ -1,0 +1,25 @@
+uuid: fb3b4241-6d0f-4784-8390-8ef426892fc0
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - evolve
+id: evolve_main_menu
+theme: evolve
+region: navigation
+weight: 0
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: main_menu
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: true
+visibility: {  }

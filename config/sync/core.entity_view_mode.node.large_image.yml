@@ -1,0 +1,11 @@
+uuid: 9e67794c-5fbf-493b-8ed4-b7b0c0d1e9bc
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.large_image
+label: large_image
+description: null
+targetEntityType: node
+cache: true

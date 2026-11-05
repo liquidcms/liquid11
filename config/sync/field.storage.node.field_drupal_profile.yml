@@ -1,0 +1,21 @@
+uuid: 5ce09a89-02dc-4a24-bc2f-416c9d6af231
+langcode: und
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_drupal_profile
+field_name: field_drupal_profile
+entity_type: node
+type: string
+settings:
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

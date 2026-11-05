@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * Blog slider item (D7 node--article--slider.tpl.php).
+ */
+#}
+<div id="node-{{ node.id }}" class="slider-blog">
+  <div class="slider-media">
+    <section class="date">
+      <span class="day">{{ node.createdtime|format_date('custom', 'd') }}</span>
+      <span class="month">{{ node.createdtime|format_date('custom', 'M') }}</span>
+    </section>
+    {{ teaser_image }}
+  </div>
+  <div class="slider-post-content">
+    <h4><a href="{{ url }}"> {{ label }}</a></h4>
+    <div class="short-desc">{{ content|without('links') }}</div>
+  </div>
+  <div class="author">
+    {{ 'by'|t }} {{ author_display_name }} / <a href="#">0 {{ 'Comments'|t }}</a>
+  </div>
+</div>

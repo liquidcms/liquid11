@@ -1,0 +1,28 @@
+uuid: 7406f59f-9b2b-40c8-a87c-301027c976c0
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:c49c6b96-6ea8-4d6d-a6a1-4c4c41d87a36'
+  module:
+    - block_content
+    - system
+  theme:
+    - evolve
+id: evolve_block_70
+theme: evolve
+region: right_sidebar
+weight: 0
+provider: null
+plugin: 'block_content:c49c6b96-6ea8-4d6d-a6a1-4c4c41d87a36'
+settings:
+  id: 'block_content:c49c6b96-6ea8-4d6d-a6a1-4c4c41d87a36'
+  label: 'Contact Information'
+  label_display: visible
+  provider: block_content
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /contact

@@ -1,0 +1,11 @@
+uuid: 4cce829d-d1d9-46bc-8e0b-796b77c336fa
+langcode: en
+status: true
+dependencies:
+  module:
+    - liquid_timesheets
+id: timesheet_unmark_client_invoiced
+label: 'Unmark client invoiced'
+type: timesheet
+plugin: timesheet_unmark_client_invoiced
+configuration: {  }

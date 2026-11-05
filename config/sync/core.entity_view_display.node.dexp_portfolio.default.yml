@@ -1,0 +1,83 @@
+uuid: 22e5eaa3-d27a-440f-b0d4-4802f722ce55
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.dexp_portfolio.body
+    - field.field.node.dexp_portfolio.field_drupal_version
+    - field.field.node.dexp_portfolio.field_portfolio_categories
+    - field.field.node.dexp_portfolio.field_portfolio_images
+    - field.field.node.dexp_portfolio.field_site
+    - field.field.node.dexp_portfolio.field_tags
+    - image.style.porfolio_main
+    - node.type.dexp_portfolio
+  module:
+    - image
+    - link
+    - text
+    - user
+id: node.dexp_portfolio.default
+targetEntityType: node
+bundle: dexp_portfolio
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_drupal_version:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_portfolio_categories:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_portfolio_images:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: porfolio_main
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_site:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_tags:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

@@ -1,0 +1,10 @@
+entity.timesheet.add_form:
+  route_name: entity.timesheet.add_form
+  title: 'Add timesheet'
+  appears_on:
+    - entity.timesheet.collection
+entity.timesheet_project.add_form:
+  route_name: entity.timesheet_project.add_form
+  title: 'Add project'
+  appears_on:
+    - entity.timesheet_project.collection

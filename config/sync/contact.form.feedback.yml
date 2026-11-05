@@ -1,0 +1,12 @@
+uuid: e7dcfbd9-9a4b-4afb-ad8a-69e76a855e71
+langcode: en
+status: true
+dependencies: {  }
+id: feedback
+label: Contact
+recipients:
+  - info@liquidcms.ca
+reply: ''
+weight: 0
+message: null
+redirect: null

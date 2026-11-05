@@ -1,0 +1,16 @@
+uuid: 50448117-7516-4742-b1fe-3ce8b133be05
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    parent: 'main:'
+name: Client
+type: clients
+description: null
+help: null
+new_revision: false
+preview_mode: 1
+display_submitted: false

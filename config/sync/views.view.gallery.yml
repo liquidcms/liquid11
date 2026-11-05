@@ -1,0 +1,133 @@
+uuid: 928b92c4-7c10-40c9-9106-71fadf90c35f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_gallery_images
+    - image.style.gallery
+    - node.type.gallery
+  module:
+    - evolve_views
+    - image
+    - node
+    - user
+id: gallery
+label: Gallery
+module: views
+description: ''
+tag: ''
+base_table: node_field_data
+base_field: nid
+display:
+  default:
+    id: default
+    display_title: Default
+    display_plugin: default
+    position: 0
+    display_options:
+      title: Gallery
+      fields:
+        field_gallery_images:
+          id: field_gallery_images
+          table: node__field_gallery_images
+          field: field_gallery_images
+          plugin_id: field
+          label: ''
+          element_default_classes: false
+          type: image
+          settings:
+            image_link: ''
+            image_style: gallery
+          group_rows: false
+          delta_limit: 5
+          delta_offset: 0
+      pager:
+        type: some
+        options:
+          offset: 0
+          items_per_page: 5
+      exposed_form:
+        type: basic
+        options: {  }
+      access:
+        type: perm
+        options:
+          perm: 'access content'
+      cache:
+        type: tag
+        options: {  }
+      sorts:
+        random:
+          id: random
+          table: views
+          field: random
+          plugin_id: random
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          value:
+            gallery: gallery
+      style:
+        type: dexp_bxslider
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: false
+          mode: fade
+          speed: 500
+          auto: true
+          pause: 5000
+          infiniteloop: true
+          randomstart: true
+          pager: true
+          controls: true
+          maxslides: 1
+          slidewidth: 500
+      row:
+        type: fields
+        options:
+          default_field_elements: false
+      query:
+        type: views_query
+        options: {  }
+      display_extenders: {  }
+    cache_metadata:
+      max-age: 0
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_gallery_images'
+  block:
+    id: block
+    display_title: Block
+    display_plugin: block
+    position: 1
+    display_options:
+      display_extenders: {  }
+      block_description: 'Home Page Gallery'
+    cache_metadata:
+      max-age: 0
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_gallery_images'

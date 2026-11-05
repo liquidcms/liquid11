@@ -1,0 +1,28 @@
+uuid: f70dc89d-1b89-47c4-b60e-960a7d74b936
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:d318b1ee-3850-45d6-aeaf-e5cc5c354df0'
+  module:
+    - block_content
+    - system
+  theme:
+    - evolve
+id: evolve_block_76
+theme: evolve
+region: extra_bottom4
+weight: 0
+provider: null
+plugin: 'block_content:d318b1ee-3850-45d6-aeaf-e5cc5c354df0'
+settings:
+  id: 'block_content:d318b1ee-3850-45d6-aeaf-e5cc5c354df0'
+  label: 'Where To Next?'
+  label_display: visible
+  provider: block_content
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

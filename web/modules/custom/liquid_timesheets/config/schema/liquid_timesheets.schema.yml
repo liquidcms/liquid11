@@ -1,0 +1,27 @@
+liquid_timesheets.settings:
+  type: config_object
+  label: 'Liquid Timesheets settings'
+  mapping:
+    next_invoice_number:
+      type: integer
+      label: 'Next invoice number'
+
+action.configuration.timesheet_mark_client_invoiced:
+  type: action_configuration_default
+  label: 'Mark client invoiced'
+
+action.configuration.timesheet_unmark_client_invoiced:
+  type: action_configuration_default
+  label: 'Unmark client invoiced'
+
+action.configuration.timesheet_mark_client_invoiced_imported:
+  type: action_configuration_default
+  label: 'Mark client invoiced + imported'
+
+action.configuration.timesheet_mark_imported:
+  type: action_configuration_default
+  label: 'Mark imported'
+
+action.configuration.timesheet_unmark_imported:
+  type: action_configuration_default
+  label: 'Unmark imported'

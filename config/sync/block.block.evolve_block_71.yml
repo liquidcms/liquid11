@@ -1,0 +1,28 @@
+uuid: 1e355062-c80b-4505-93da-edbac0b38a48
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:59ef8efc-5d68-480b-99b3-a9a0adf712ce'
+  module:
+    - block_content
+    - system
+  theme:
+    - evolve
+id: evolve_block_71
+theme: evolve
+region: right_sidebar
+weight: 1
+provider: null
+plugin: 'block_content:59ef8efc-5d68-480b-99b3-a9a0adf712ce'
+settings:
+  id: 'block_content:59ef8efc-5d68-480b-99b3-a9a0adf712ce'
+  label: 'Social In Contact Page'
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /contact

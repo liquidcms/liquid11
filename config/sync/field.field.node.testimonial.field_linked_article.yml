@@ -1,0 +1,19 @@
+uuid: acc2b693-9539-42c3-9cc2-f1a0ec21c78a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_linked_article
+    - node.type.testimonial
+id: node.testimonial.field_linked_article
+field_name: field_linked_article
+entity_type: node
+bundle: testimonial
+label: 'Linked Article'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

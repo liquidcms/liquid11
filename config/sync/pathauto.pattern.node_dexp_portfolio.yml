@@ -1,0 +1,23 @@
+uuid: 5693ac07-eaf7-4939-892b-d4d988e4676b
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.dexp_portfolio
+  module:
+    - node
+id: node_dexp_portfolio
+label: 'Content - Portfolio'
+type: 'canonical_entities:node'
+pattern: '/portfolio/[node:title]'
+selection_criteria:
+  -
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: node
+    bundles:
+      dexp_portfolio: dexp_portfolio
+selection_logic: and
+weight: 0
+relationships: {  }

@@ -1,0 +1,19 @@
+uuid: 6843b016-7a51-4d43-8413-935a30f2f3dc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_job_title
+    - node.type.testimonial
+id: node.testimonial.field_job_title
+field_name: field_job_title
+entity_type: node
+bundle: testimonial
+label: 'Job Title'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

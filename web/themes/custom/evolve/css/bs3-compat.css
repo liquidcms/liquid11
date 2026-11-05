@@ -1,0 +1,74 @@
+/**
+ * @file
+ * Bootstrap 3 defaults that the Evolve CSS was written against, restored on
+ * top of Bootstrap 5 so the site keeps its D7 look. Loaded after Bootstrap
+ * and before the Evolve styles, so Evolve's own rules still win.
+ */
+
+/* Typography base (BS3: 14px / 1.428571, no link underline). */
+body {
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+}
+a { text-decoration: none; }
+a:hover, a:focus { text-decoration: underline; }
+p { margin: 0 0 10px; }
+ul, ol { margin-top: 0; margin-bottom: 10px; }
+label { display: inline-block; max-width: 100%; margin-bottom: 5px; font-weight: bold; }
+small, .small { font-size: 85%; }
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: 500;
+  line-height: 1.1;
+}
+h1, h2, h3, .h1, .h2, .h3 { margin-top: 20px; margin-bottom: 10px; }
+h4, h5, h6, .h4, .h5, .h6 { margin-top: 10px; margin-bottom: 10px; }
+h1, .h1 { font-size: 36px; }
+h2, .h2 { font-size: 30px; }
+h3, .h3 { font-size: 24px; }
+h4, .h4 { font-size: 18px; }
+h5, .h5 { font-size: 14px; }
+h6, .h6 { font-size: 12px; }
+
+/* Grid: BS3 container widths and 30px gutters. */
+.container {
+  --bs-gutter-x: 30px;
+  padding-left: 15px;
+  padding-right: 15px;
+  max-width: 100%;
+}
+.row { --bs-gutter-x: 30px; }
+@media (min-width: 768px) { .container { max-width: 750px; } }
+@media (min-width: 992px) { .container { max-width: 970px; } }
+@media (min-width: 1200px) { .container { max-width: 1170px; } }
+
+/* Buttons: BS3 sizing. */
+.btn {
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+}
+.btn-link { text-decoration: none; }
+
+/* Tabs: BS3 look on the BS5 nav markup. */
+.nav-tabs { margin-bottom: 0; }
+.nav-tabs .nav-link { border-radius: 4px 4px 0 0; margin-right: 2px; line-height: 1.42857143; }
+
+/* Tables and forms used in node bodies. */
+table { border-collapse: collapse; }
+.table { --bs-table-bg: transparent; }
+input, button, select, textarea { font-size: inherit; line-height: inherit; }
+
+/* Bootstrap 5's ".placeholder" loading skeleton clashes with Drupal's
+   <em class="placeholder"> in messages (grey bar with a wait cursor). */
+em.placeholder {
+  display: inline;
+  min-height: 0;
+  vertical-align: baseline;
+  cursor: auto;
+  background-color: transparent;
+  opacity: 1;
+  font-style: italic;
+}

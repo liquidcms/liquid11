@@ -1,0 +1,28 @@
+uuid: 67a70fb8-3281-4300-b4ef-c89e9bf82e46
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:5355f738-f0a7-4101-a2e9-5cd4713824ba'
+  module:
+    - block_content
+    - system
+  theme:
+    - evolve
+id: evolve_block_11
+theme: evolve
+region: feature_first
+weight: 0
+provider: null
+plugin: 'block_content:5355f738-f0a7-4101-a2e9-5cd4713824ba'
+settings:
+  id: 'block_content:5355f738-f0a7-4101-a2e9-5cd4713824ba'
+  label: 'Drupal Done Right'
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

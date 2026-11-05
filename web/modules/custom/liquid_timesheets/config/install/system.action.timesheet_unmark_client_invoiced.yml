@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - liquid_timesheets
+id: timesheet_unmark_client_invoiced
+label: 'Unmark client invoiced'
+type: timesheet
+plugin: timesheet_unmark_client_invoiced
+configuration: {  }

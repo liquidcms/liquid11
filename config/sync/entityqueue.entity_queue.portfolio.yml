@@ -1,0 +1,21 @@
+uuid: b15a6b1a-fd7a-42a8-a263-181c087c75bd
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: portfolio
+label: Portfolio
+description: null
+handler: simple
+handler_configuration: {  }
+entity_settings:
+  target_type: node
+  handler: 'default:node'
+  handler_settings:
+    target_bundles: {  }
+queue_settings:
+  min_size: 0
+  max_size: 0
+  act_as_queue: false
+  reverse: false

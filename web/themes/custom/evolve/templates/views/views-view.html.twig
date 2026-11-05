@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * View wrapper with the D7 classes (view-<id>, view-display-id-<display>) the Evolve CSS targets.
+ */
+#}
+{%
+  set classes = [
+    'view',
+    'view-' ~ id|clean_class,
+    'view-id-' ~ id,
+    'view-display-id-' ~ display_id,
+    css_class,
+    dom_id ? 'view-dom-id-' ~ dom_id,
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {{ title }}
+  {{ title_suffix }}
+  {% if header %}<div class="view-header">{{ header }}</div>{% endif %}
+  {{ exposed }}
+  {{ attachment_before }}
+  {% if rows %}<div class="view-content">{{ rows }}</div>{% elseif empty %}<div class="view-empty">{{ empty }}</div>{% endif %}
+  {% if pager %}{{ pager }}{% endif %}
+  {{ attachment_after }}
+  {{ more }}
+  {% if footer %}<div class="view-footer">{{ footer }}</div>{% endif %}
+  {{ feed_icons }}
+</div>

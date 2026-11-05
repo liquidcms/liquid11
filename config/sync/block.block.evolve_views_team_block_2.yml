@@ -1,0 +1,31 @@
+uuid: dcb65193-328c-4b26-817e-00ade051f55c
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.team
+  module:
+    - system
+    - views
+  theme:
+    - evolve
+id: evolve_views_team_block_2
+theme: evolve
+region: content_bottom_second
+weight: -17
+provider: null
+plugin: 'views_block:team-block_2'
+settings:
+  id: 'views_block:team-block_2'
+  label: 'Our Team'
+  label_display: visible
+  provider: views
+  views_label: 'Our Team'
+  items_per_page: null
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: |-
+      /about
+      /team

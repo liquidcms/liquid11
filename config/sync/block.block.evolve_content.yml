@@ -1,0 +1,20 @@
+uuid: 57a761db-ffca-466c-9aa9-ce4d12214939
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - evolve
+id: evolve_content
+theme: evolve
+region: content
+weight: -77
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: content
+  label_display: '0'
+  provider: system
+visibility: {  }

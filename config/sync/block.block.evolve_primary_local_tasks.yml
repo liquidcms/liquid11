@@ -1,0 +1,22 @@
+uuid: d1f777a5-537f-4abe-87c0-73d0a0c0589b
+langcode: en
+status: true
+dependencies:
+  theme:
+    - evolve
+_core:
+  default_config_hash: nGE3EoPQQaQCuqTUtZgw0-KIzmrqdKDzdNQf2JyPUt4
+id: evolve_primary_local_tasks
+theme: evolve
+region: highlighted
+weight: -4
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Primary tabs'
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: false
+visibility: {  }

@@ -1,0 +1,18 @@
+administer timesheets:
+  title: 'Administer timesheets and projects'
+  description: 'Full access to all timesheets and projects, and their field settings.'
+  restrict access: true
+create timesheets:
+  title: 'Create timesheets'
+view own timesheets:
+  title: 'View own timesheets'
+view any timesheets:
+  title: 'View any timesheets'
+edit own timesheets:
+  title: 'Edit own timesheets'
+edit any timesheets:
+  title: 'Edit any timesheets'
+delete own timesheets:
+  title: 'Delete own timesheets'
+delete any timesheets:
+  title: 'Delete any timesheets'

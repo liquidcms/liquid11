@@ -1,0 +1,9 @@
+uuid: 4083515b-c45c-438e-bb77-2129f79b4d71
+langcode: en
+status: true
+dependencies: {  }
+name: 'Drupal Version'
+vid: drupal_version
+description: null
+weight: 0
+new_revision: false

@@ -1,0 +1,120 @@
+uuid: 492fccb5-9599-489a-b05b-4195fb1c9d69
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.filtered_html
+    - filter.format.full_html
+    - node.type.article
+    - node.type.clients
+    - node.type.dexp_portfolio
+    - node.type.gallery
+    - node.type.ios_app
+    - node.type.page
+    - node.type.team
+    - node.type.testimonial
+    - node.type.webform
+  module:
+    - block
+    - contextual
+    - filter
+    - image
+    - media
+    - node
+    - path
+    - pathauto
+    - redirect
+    - system
+    - taxonomy
+    - toolbar
+    - views_ui
+_core:
+  default_config_hash: OeKGIkmZA_c-t6QLH81WNQx8gDCc1MRmxaTuQgxBByU
+id: administrator
+label: administrator
+weight: 2
+is_admin: true
+permissions:
+  - 'access administration pages'
+  - 'access content'
+  - 'access content overview'
+  - 'access contextual links'
+  - 'access site in maintenance mode'
+  - 'access site reports'
+  - 'access toolbar'
+  - 'access user profiles'
+  - 'administer actions'
+  - 'administer blocks'
+  - 'administer content types'
+  - 'administer filters'
+  - 'administer image styles'
+  - 'administer media'
+  - 'administer menu'
+  - 'administer modules'
+  - 'administer nodes'
+  - 'administer pathauto'
+  - 'administer permissions'
+  - 'administer redirects'
+  - 'administer site configuration'
+  - 'administer software updates'
+  - 'administer taxonomy'
+  - 'administer themes'
+  - 'administer url aliases'
+  - 'administer users'
+  - 'administer views'
+  - 'bypass node access'
+  - 'cancel account'
+  - 'change own username'
+  - 'create article content'
+  - 'create clients content'
+  - 'create dexp_portfolio content'
+  - 'create gallery content'
+  - 'create ios_app content'
+  - 'create page content'
+  - 'create team content'
+  - 'create testimonial content'
+  - 'create url aliases'
+  - 'create webform content'
+  - 'delete any article content'
+  - 'delete any clients content'
+  - 'delete any dexp_portfolio content'
+  - 'delete any gallery content'
+  - 'delete any ios_app content'
+  - 'delete any page content'
+  - 'delete any team content'
+  - 'delete any testimonial content'
+  - 'delete any webform content'
+  - 'delete own article content'
+  - 'delete own clients content'
+  - 'delete own dexp_portfolio content'
+  - 'delete own gallery content'
+  - 'delete own ios_app content'
+  - 'delete own page content'
+  - 'delete own team content'
+  - 'delete own testimonial content'
+  - 'delete own webform content'
+  - 'edit any article content'
+  - 'edit any clients content'
+  - 'edit any dexp_portfolio content'
+  - 'edit any gallery content'
+  - 'edit any ios_app content'
+  - 'edit any page content'
+  - 'edit any team content'
+  - 'edit any testimonial content'
+  - 'edit any webform content'
+  - 'edit own article content'
+  - 'edit own clients content'
+  - 'edit own dexp_portfolio content'
+  - 'edit own gallery content'
+  - 'edit own ios_app content'
+  - 'edit own page content'
+  - 'edit own team content'
+  - 'edit own testimonial content'
+  - 'edit own webform content'
+  - 'notify of path changes'
+  - 'select account cancellation method'
+  - 'use text format filtered_html'
+  - 'use text format full_html'
+  - 'view media'
+  - 'view own unpublished content'
+  - 'view the administration theme'

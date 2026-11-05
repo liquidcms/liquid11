@@ -1,0 +1,21 @@
+uuid: d3f31a2e-5fc6-4bac-8c49-dea4dc077d42
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: team
+label: Team
+description: null
+handler: simple
+handler_configuration: {  }
+entity_settings:
+  target_type: node
+  handler: 'default:node'
+  handler_settings:
+    target_bundles: {  }
+queue_settings:
+  min_size: 0
+  max_size: 0
+  act_as_queue: false
+  reverse: false

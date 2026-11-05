@@ -1,0 +1,110 @@
+uuid: 811e0dfe-7f89-4e4e-8a4c-113793f88dca
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - node.type.testimonial
+  module:
+    - evolve_views
+    - node
+    - user
+id: testimonial
+label: Testimonial
+module: views
+description: ''
+tag: ''
+base_table: node_field_data
+base_field: nid
+display:
+  default:
+    id: default
+    display_title: Default
+    display_plugin: default
+    position: 0
+    display_options:
+      title: Testimonial
+      pager:
+        type: some
+        options:
+          offset: 0
+          items_per_page: 5
+      exposed_form:
+        type: basic
+        options: {  }
+      access:
+        type: perm
+        options:
+          perm: 'access content'
+      cache:
+        type: tag
+        options: {  }
+      sorts:
+        random:
+          id: random
+          table: views
+          field: random
+          plugin_id: random
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          value:
+            testimonial: testimonial
+      style:
+        type: dexp_bxslider
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: false
+          speed: 500
+          auto: true
+          pause: 10000
+          infiniteloop: true
+          randomstart: true
+          controls: false
+          maxslides: 1
+          slidewidth: 1000
+      row:
+        type: 'entity:node'
+        options:
+          view_mode: teaser
+      query:
+        type: views_query
+        options: {  }
+      display_extenders: {  }
+    cache_metadata:
+      max-age: 0
+      contexts:
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }
+  block:
+    id: block
+    display_title: 'Home Page Testimonial'
+    display_plugin: block
+    position: 1
+    display_options:
+      display_extenders: {  }
+      block_description: Testimonial
+    cache_metadata:
+      max-age: 0
+      contexts:
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }

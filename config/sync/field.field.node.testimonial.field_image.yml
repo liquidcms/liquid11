@@ -1,0 +1,38 @@
+uuid: d45abf4e-030f-4237-989b-454c6cda324b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_image
+    - node.type.testimonial
+  module:
+    - image
+id: node.testimonial.field_image
+field_name: field_image
+entity_type: node
+bundle: testimonial
+label: 'Client Avatar'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: images/clients
+  file_extensions: 'png gif jpg jpeg'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: false
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+field_type: image

@@ -1,0 +1,23 @@
+uuid: 6cc885f0-e1f6-4ea9-926d-a2c4e39f3f7a
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.team
+  module:
+    - node
+id: node_team
+label: 'Content - Team'
+type: 'canonical_entities:node'
+pattern: '/team/[node:title]'
+selection_criteria:
+  -
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: node
+    bundles:
+      team: team
+selection_logic: and
+weight: 0
+relationships: {  }

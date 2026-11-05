@@ -1,0 +1,15 @@
+_core:
+  default_config_hash: ijfbzDTN4CbE7Sr-6ubWzy_t1vH4OtU1doNCLssVz-4
+langcode: en
+uuid: 0cd8f869-4f2b-4611-85f1-99e7d68b7586
+name: LiquidCMS
+mail: info@liquidcms.ca
+slogan: 'Drupal Done Right!!'
+page:
+  403: ''
+  404: /node/53
+  front: /node
+admin_compact_mode: false
+weight_select_max: 100
+default_langcode: en
+mail_notification: null

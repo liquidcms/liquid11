@@ -1,0 +1,40 @@
+uuid: 59942801-94dc-4e38-907f-19f701255f42
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.slider
+    - field.field.node.article.body
+    - field.field.node.article.field_attachments
+    - field.field.node.article.field_categories
+    - field.field.node.article.field_drupal_version
+    - field.field.node.article.field_resource
+    - field.field.node.article.field_tags
+    - node.type.article
+  module:
+    - text
+    - user
+id: node.article.slider
+targetEntityType: node
+bundle: article
+mode: slider
+content:
+  body:
+    type: text_trimmed
+    label: hidden
+    settings:
+      trim_length: 120
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_attachments: true
+  field_categories: true
+  field_drupal_version: true
+  field_resource: true
+  field_tags: true

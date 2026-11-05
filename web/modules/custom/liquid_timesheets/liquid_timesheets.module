@@ -1,0 +1,248 @@
+<?php
+
+/**
+ * @file
+ * Timesheet tracking for LiquidCMS clients.
+ */
+
+declare(strict_types=1);
+
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\taxonomy\TermInterface;
+use Drupal\views\ViewExecutable;
+
+/**
+ * Vocabularies that hold billing details and must stay off the public site.
+ */
+const LIQUID_TIMESHEETS_PRIVATE_VOCABS = ['billing_rate', 'tax_rate', 'currency'];
+
+/**
+ * Implements hook_ENTITY_TYPE_access() for taxonomy terms.
+ */
+function liquid_timesheets_taxonomy_term_access(EntityInterface $term, string $operation, AccountInterface $account): AccessResult {
+  if ($operation !== 'view' || !in_array($term->bundle(), LIQUID_TIMESHEETS_PRIVATE_VOCABS, TRUE)) {
+    return AccessResult::neutral();
+  }
+  return AccessResult::forbiddenIf(!$account->hasPermission('create timesheets') && !$account->hasPermission('administer timesheets'))
+    ->cachePerPermissions();
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave() for taxonomy terms.
+ *
+ * Keeps pathauto from giving billing terms public aliases.
+ */
+function liquid_timesheets_taxonomy_term_presave(TermInterface $term): void {
+  if (in_array($term->bundle(), LIQUID_TIMESHEETS_PRIVATE_VOCABS, TRUE) && $term->hasField('path')) {
+    $term->get('path')->pathauto = 0;
+  }
+}
+
+/**
+ * Implements hook_views_data_alter().
+ *
+ * EntityViewsData gives base fields generic numeric/string filters; swap in
+ * select lists for references and real date handling for the work date.
+ */
+function liquid_timesheets_views_data_alter(array &$data): void {
+  $refs = [
+    'timesheet' => ['project'],
+    'timesheet_project' => ['client', 'billing_rate'],
+  ];
+  foreach ($refs as $table => $fields) {
+    foreach ($fields as $field) {
+      $data[$table][$field]['filter']['id'] = 'entity_reference';
+      $data[$table][$field]['filter']['field_name'] = $field;
+      $data[$table][$field]['filter']['entity_type'] = $table;
+    }
+  }
+  $data['timesheet']['uid']['filter']['id'] = 'entity_reference';
+  $data['timesheet']['uid']['filter']['field_name'] = 'uid';
+  $data['timesheet']['uid']['filter']['entity_type'] = 'timesheet';
+  foreach (['filter', 'sort', 'argument'] as $type) {
+    $data['timesheet']['work_date'][$type]['id'] = $type === 'argument' ? 'datetime_full_date' : 'datetime';
+    $data['timesheet']['work_date'][$type]['field_name'] = 'work_date';
+    $data['timesheet']['work_date'][$type]['datetime_type'] = 'date';
+  }
+
+  foreach (['invoice_date' => t('Invoice date'), 'due_date' => t('Due date')] as $key => $title) {
+    $data['timesheet'][$key] = [
+      'title' => $title,
+      'help' => t('Today plus an offset, for invoice exports.'),
+      'field' => ['id' => 'liquid_timesheets_relative_date'],
+    ];
+  }
+  $data['timesheet']['next_invoice_number'] = [
+    'title' => t('Next invoice number'),
+    'help' => t('The current "Next invoice number" setting.'),
+    'field' => ['id' => 'liquid_timesheets_next_invoice_number'],
+  ];
+  $data['timesheet']['export_link'] = [
+    'title' => t('Export button'),
+    'help' => t('Button to another display (e.g. CSV) with the current filters.'),
+    'area' => ['id' => 'liquid_timesheets_export_link'],
+  ];
+  $data['timesheet']['hours_total'] = [
+    'title' => t('Total hours'),
+    'help' => t('Sum of hours for the rows shown.'),
+    'area' => ['id' => 'liquid_timesheets_hours_total'],
+  ];
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for views_exposed_form.
+ *
+ * Manage billings: date pickers for the date range, defaulting to the last
+ * three months until the user filters.
+ */
+function liquid_timesheets_form_views_exposed_form_alter(array &$form, FormStateInterface $form_state): void {
+  if ($form_state->get('view')?->id() !== 'manage_billings' || !isset($form['date_wrapper']['date'])) {
+    return;
+  }
+
+  // Core caps reference select lists at 100 options; list every project,
+  // grouped by client.
+  if (isset($form['project']['#options'])) {
+    $storage = \Drupal::entityTypeManager()->getStorage('timesheet_project');
+    $options = [];
+    foreach ($storage->loadMultiple($storage->getQuery()->accessCheck(TRUE)->execute()) as $project) {
+      $client = $project->get('client')->entity?->label() ?? (string) t('No client');
+      $options[$client][$project->id()] = $project->label() . ($project->get('archived')->value ? ' ' . t('(archived)') : '');
+    }
+    ksort($options, SORT_NATURAL | SORT_FLAG_CASE);
+    foreach ($options as &$group) {
+      natcasesort($group);
+    }
+    unset($group);
+    $form['project']['#options'] = $options;
+  }
+
+  // Only clients that have projects, not every portfolio client.
+  if (isset($form['client']['#options'])) {
+    $with_projects = \Drupal::database()->query('SELECT DISTINCT client FROM {timesheet_project}')->fetchCol();
+    $form['client']['#options'] = array_intersect_key($form['client']['#options'], array_flip($with_projects) + ['All' => TRUE]);
+  }
+
+  $range = &$form['date_wrapper']['date'];
+  $input = $form_state->getUserInput();
+  $defaults = [
+    'min' => (new \DateTime('-3 months'))->format('Y-m-d'),
+    'max' => (new \DateTime('now'))->format('Y-m-d'),
+  ];
+  foreach (['min' => t('From'), 'max' => t('To')] as $key => $title) {
+    $range[$key]['#type'] = 'date';
+    $range[$key]['#title'] = $title;
+    $range[$key]['#size'] = NULL;
+    if (empty($input['date'][$key])) {
+      $range[$key]['#default_value'] = $defaults[$key];
+    }
+  }
+}
+
+/**
+ * Implements hook_views_pre_build().
+ *
+ * Applies the same default date range to the query on a first visit.
+ */
+function liquid_timesheets_views_pre_build(ViewExecutable $view): void {
+  if ($view->id() !== 'manage_billings') {
+    return;
+  }
+  $input = $view->getExposedInput();
+  if (empty($input['date']['min']) && empty($input['date']['max'])) {
+    $input['date'] = [
+      'min' => (new \DateTime('-3 months'))->format('Y-m-d'),
+      'max' => (new \DateTime('now'))->format('Y-m-d'),
+    ];
+    $view->setExposedInput($input);
+  }
+}
+
+/**
+ * Implements hook_user_format_name_alter().
+ *
+ * Shows the full name instead of the login everywhere (timesheets, exports).
+ */
+function liquid_timesheets_user_format_name_alter(string &$name, AccountInterface $account): void {
+  $user = $account instanceof EntityInterface ? $account : \Drupal::entityTypeManager()->getStorage('user')->load($account->id());
+  if ($user?->hasField('field_full_name') && !$user->get('field_full_name')->isEmpty()) {
+    $name = $user->get('field_full_name')->value;
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for the timesheet add form.
+ */
+function liquid_timesheets_form_timesheet_add_form_alter(array &$form, FormStateInterface $form_state): void {
+  _liquid_timesheets_project_options($form, $form_state);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for the timesheet edit form.
+ */
+function liquid_timesheets_form_timesheet_edit_form_alter(array &$form, FormStateInterface $form_state): void {
+  _liquid_timesheets_project_options($form, $form_state);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for the project add form.
+ *
+ * Prefills the client when coming from a client's Projects tab.
+ */
+function liquid_timesheets_form_timesheet_project_add_form_alter(array &$form, FormStateInterface $form_state): void {
+  $client = (int) \Drupal::request()->query->get('client');
+  if ($client && isset($form['client']['widget']['#options'][$client])) {
+    $form['client']['widget']['#default_value'] = [$client];
+  }
+}
+
+/**
+ * Groups the project picker by client.
+ *
+ * The projects come from the view set on the field. The project already on the
+ * timesheet stays, even if the view no longer returns it.
+ */
+function _liquid_timesheets_project_options(array &$form, FormStateInterface $form_state): void {
+  if (!isset($form['project']['widget']['#options'])) {
+    return;
+  }
+  $timesheet = $form_state->getFormObject()->getEntity();
+  $referenceable = \Drupal::service('plugin.manager.entity_reference_selection')
+    ->getSelectionHandler($timesheet->getFieldDefinition('project'), $timesheet)
+    ->getReferenceableEntities();
+  $ids = [];
+  foreach ($referenceable as $bundle_options) {
+    $ids += $bundle_options;
+  }
+  $ids = array_keys($ids);
+  if ($current = $timesheet->get('project')->target_id) {
+    $ids[] = $current;
+  }
+  $storage = \Drupal::entityTypeManager()->getStorage('timesheet_project');
+
+  $options = [];
+  foreach ($storage->loadMultiple($ids) as $project) {
+    $client = $project->get('client')->entity?->label() ?? (string) t('No client');
+    $options[$client][$project->id()] = $project->label();
+  }
+  ksort($options, SORT_NATURAL | SORT_FLAG_CASE);
+  foreach ($options as &$group) {
+    natcasesort($group);
+  }
+  $empty = array_intersect_key($form['project']['widget']['#options'], ['_none' => TRUE]);
+  $form['project']['widget']['#options'] = $empty + $options;
+}
+
+/**
+ * Returns "Client » Project" for lists.
+ */
+function _liquid_timesheets_project_label(?EntityInterface $project): string {
+  if (!$project) {
+    return '';
+  }
+  $client = $project->get('client')->entity?->label();
+  return $client ? "$client » {$project->label()}" : $project->label();
+}

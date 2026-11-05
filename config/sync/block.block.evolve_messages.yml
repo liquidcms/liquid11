@@ -1,0 +1,20 @@
+uuid: e6fb2bef-399b-4c4e-9e8f-d010b1296434
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - evolve
+id: evolve_messages
+theme: evolve
+region: highlighted
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: messages
+  label_display: '0'
+  provider: system
+visibility: {  }

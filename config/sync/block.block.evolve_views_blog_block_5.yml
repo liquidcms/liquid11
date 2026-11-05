@@ -1,0 +1,29 @@
+uuid: 5f885382-da36-44a3-80c8-8b655dc6890d
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.blog
+  module:
+    - system
+    - views
+  theme:
+    - evolve
+id: evolve_views_blog_block_5
+theme: evolve
+region: user19
+weight: 0
+provider: null
+plugin: 'views_block:blog-block_5'
+settings:
+  id: 'views_block:blog-block_5'
+  label: views_blog_block_5
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: null
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

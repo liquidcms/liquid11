@@ -1,0 +1,23 @@
+uuid: 4bdff024-89e7-4c6c-aaf7-dd48e83b4b66
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:d0a1c24d-c607-4a3c-b6f8-f6586329a353'
+  module:
+    - block_content
+  theme:
+    - evolve
+id: evolve_block_3
+theme: evolve
+region: copyright
+weight: 0
+provider: null
+plugin: 'block_content:d0a1c24d-c607-4a3c-b6f8-f6586329a353'
+settings:
+  id: 'block_content:d0a1c24d-c607-4a3c-b6f8-f6586329a353'
+  label: Copyright
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility: {  }

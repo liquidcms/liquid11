@@ -1,0 +1,30 @@
+uuid: 3a01253e-8d11-454d-b226-56adaae47adf
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:6122677d-e47e-4ab3-b210-3e0da47ac9d8'
+  module:
+    - block_content
+    - system
+  theme:
+    - evolve
+id: evolve_block_14
+theme: evolve
+region: right_sidebar
+weight: -44
+provider: null
+plugin: 'block_content:6122677d-e47e-4ab3-b210-3e0da47ac9d8'
+settings:
+  id: 'block_content:6122677d-e47e-4ab3-b210-3e0da47ac9d8'
+  label: 'BLOG POSTS'
+  label_display: visible
+  provider: block_content
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: |-
+      /blog
+      /blog/*

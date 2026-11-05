@@ -1,0 +1,23 @@
+uuid: 6c6df848-4c14-4733-8c19-e22c3d4ccbbe
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:2bd6c768-2a20-49fd-a0f9-0ea632590957'
+  module:
+    - block_content
+  theme:
+    - evolve
+id: evolve_block_40
+theme: evolve
+region: bottom_first
+weight: 0
+provider: null
+plugin: 'block_content:2bd6c768-2a20-49fd-a0f9-0ea632590957'
+settings:
+  id: 'block_content:2bd6c768-2a20-49fd-a0f9-0ea632590957'
+  label: 'GET IN TOUCH'
+  label_display: visible
+  provider: block_content
+  view_mode: full
+visibility: {  }

@@ -1,0 +1,30 @@
+uuid: 9e265feb-3ddc-4c18-8237-72916d0ae631
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_currency
+    - node.type.clients
+    - taxonomy.vocabulary.currency
+_core:
+  default_config_hash: inGnk6YNfl-XorH6doFABrB4LfdL2_5pOqnp3dbJwxc
+id: node.clients.field_currency
+field_name: field_currency
+entity_type: node
+bundle: clients
+label: Currency
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      currency: currency
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+field_type: entity_reference

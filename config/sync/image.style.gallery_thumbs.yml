@@ -1,0 +1,15 @@
+uuid: 36dd9e48-101b-417e-8d67-153b3304c768
+langcode: en
+status: true
+dependencies: {  }
+name: gallery_thumbs
+label: 'Gallery thumbs'
+effects:
+  8b0e4071-8806-48ab-acd1-7da5462dd136:
+    uuid: 8b0e4071-8806-48ab-acd1-7da5462dd136
+    id: image_scale
+    weight: 1
+    data:
+      width: 300
+      height: 300
+      upscale: false

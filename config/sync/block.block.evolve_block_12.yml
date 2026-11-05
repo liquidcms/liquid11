@@ -1,0 +1,28 @@
+uuid: 6b08cb39-4a7c-4f8e-a0c9-844621534fd6
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:0f4ffd38-1bf4-4cfc-ac38-cf80fa58f624'
+  module:
+    - block_content
+    - system
+  theme:
+    - evolve
+id: evolve_block_12
+theme: evolve
+region: feature_second
+weight: 0
+provider: null
+plugin: 'block_content:0f4ffd38-1bf4-4cfc-ac38-cf80fa58f624'
+settings:
+  id: 'block_content:0f4ffd38-1bf4-4cfc-ac38-cf80fa58f624'
+  label: 'Clean Code'
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * Local tasks as Bootstrap tabs (drupalexp_menu_local_tasks() in D7).
+ */
+#}
+{% if primary %}
+  <h2 class="visually-hidden">{{ 'Primary tabs'|t }}</h2>
+  <ul class="nav nav-tabs evolve-local-tasks">{{ primary }}</ul>
+{% endif %}
+{% if secondary %}
+  <h2 class="visually-hidden">{{ 'Secondary tabs'|t }}</h2>
+  <ul class="nav nav-pills evolve-local-tasks">{{ secondary }}</ul>
+{% endif %}

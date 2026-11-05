@@ -1,0 +1,28 @@
+uuid: 08dc03ee-3811-43c0-bc29-cd874596011e
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:5f575d6a-db9c-4d24-8db8-c76837975699'
+  module:
+    - block_content
+    - system
+  theme:
+    - evolve
+id: evolve_block_68
+theme: evolve
+region: content_top
+weight: 0
+provider: null
+plugin: 'block_content:5f575d6a-db9c-4d24-8db8-c76837975699'
+settings:
+  id: 'block_content:5f575d6a-db9c-4d24-8db8-c76837975699'
+  label: 'Why Choose LiquidCMS?'
+  label_display: visible
+  provider: block_content
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

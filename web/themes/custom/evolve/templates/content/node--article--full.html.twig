@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Blog post page (D7 node--article.tpl.php).
+ */
+#}
+<div{{ attributes.addClass('node', 'node-article', 'clearfix', 'post', 'large').setAttribute('id', 'node-' ~ node.id).setAttribute('style', 'margin-top:30px;') }}>
+  <div class="post-img media">
+    <div class="mediaholder">{{ teaser_image }}</div>
+  </div>
+  <div class="post-format">
+    <h4>{{ node.createdtime|format_date('custom', 'M') }}</h4>
+    <h2>{{ node.createdtime|format_date('custom', 'd') }}</h2>
+    <h4 class="post-date">{{ node.createdtime|format_date('custom', 'Y') }}</h4>
+  </div>
+  <section class="post-content">
+    <header class="meta">
+      <ul>
+        <li><a href="#">{{ 'Posted by '|t }}<span class="username">{{ author_display_name }}</span></a></li>
+        <li>{{ content.field_categories }}</li>
+        <li><a href="#">0 {{ 'Comments'|t }}</a></li>
+      </ul>
+      <h2><a href="{{ url }}">{{ label }}</a></h2>
+    </header>
+    {{ content|without('field_resource', 'field_categories', 'links') }}
+  </section>
+</div>

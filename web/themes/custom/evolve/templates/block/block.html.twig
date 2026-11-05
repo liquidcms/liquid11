@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Evolve block wrapper, matching D7 markup: h3.block-title then div.content.
+ *
+ * The D7 html id, classes and data attributes are added in evolve_preprocess_block().
+ */
+#}
+<div{{ attributes.addClass('block') }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h3{{ title_attributes.addClass('block-title') }}>{{ label }}</h3>
+  {% endif %}
+  {{ title_suffix }}
+  <div class="content">
+    {% block content %}
+      {{ content }}
+    {% endblock %}
+  </div>
+</div>

@@ -1,0 +1,52 @@
+uuid: a70fb7a7-f85a-4bed-9c05-6c2c5eec5010
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.tax_rate.field_tax_percent
+    - taxonomy.vocabulary.tax_rate
+  module:
+    - path
+    - text
+id: taxonomy_term.tax_rate.default
+targetEntityType: taxonomy_term
+bundle: tax_rate
+mode: default
+content:
+  description:
+    type: text_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_tax_percent:
+    type: number
+    weight: 5
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 100
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden: {  }

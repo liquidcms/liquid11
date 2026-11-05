@@ -1,0 +1,27 @@
+uuid: 0cd6359f-00d1-4ca2-a953-42b4b71e56a6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ipa
+    - node.type.ios_app
+  module:
+    - file
+id: node.ios_app.field_ipa
+field_name: field_ipa
+entity_type: node
+bundle: ios_app
+label: IPA
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: apps/ios
+  file_extensions: ipa
+  max_filesize: ''
+  description_field: false
+field_type: file

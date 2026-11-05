@@ -1,0 +1,72 @@
+uuid: b26f39fb-b799-43f6-9c49-dd1b13aa095e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.ios_app.field_apk
+    - field.field.node.ios_app.field_app_icon
+    - field.field.node.ios_app.field_ipa
+    - field.field.node.ios_app.field_ipa_plist_file
+    - field.field.node.ios_app.field_private_test
+    - node.type.ios_app
+  module:
+    - file
+    - image
+    - user
+id: node.ios_app.default
+targetEntityType: node
+bundle: ios_app
+mode: default
+content:
+  field_apk:
+    type: file_default
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_app_icon:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_ipa:
+    type: file_default
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_ipa_plist_file:
+    type: file_default
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_private_test:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

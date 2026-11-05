@@ -1,0 +1,28 @@
+uuid: 5c9be835-66e4-4598-97cb-9d9b5821ae26
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:3f557767-fe18-453a-b50e-151b138e4260'
+  module:
+    - block_content
+    - system
+  theme:
+    - evolve
+id: evolve_block_77
+theme: evolve
+region: user1
+weight: 0
+provider: null
+plugin: 'block_content:3f557767-fe18-453a-b50e-151b138e4260'
+settings:
+  id: 'block_content:3f557767-fe18-453a-b50e-151b138e4260'
+  label: 'Super Crafted, Responsive Design'
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

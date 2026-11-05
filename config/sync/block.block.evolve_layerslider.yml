@@ -1,0 +1,28 @@
+uuid: 8543ce31-ae55-4699-a362-2881f088f7cb
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:18d0667a-cbe1-4681-ac61-c0bb8928884a'
+  module:
+    - block_content
+    - system
+  theme:
+    - evolve
+id: evolve_layerslider
+theme: evolve
+region: banner
+weight: 0
+provider: null
+plugin: 'block_content:18d0667a-cbe1-4681-ac61-c0bb8928884a'
+settings:
+  id: 'block_content:18d0667a-cbe1-4681-ac61-c0bb8928884a'
+  label: 'Home slider'
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

@@ -1,0 +1,28 @@
+uuid: 03447fb5-9b52-4f4f-bd66-5729e6665028
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:9c093086-0435-4dd1-9f5e-d1fe5c91ce25'
+  module:
+    - block_content
+    - system
+  theme:
+    - evolve
+id: evolve_block_79
+theme: evolve
+region: user3
+weight: 0
+provider: null
+plugin: 'block_content:9c093086-0435-4dd1-9f5e-d1fe5c91ce25'
+settings:
+  id: 'block_content:9c093086-0435-4dd1-9f5e-d1fe5c91ce25'
+  label: 'Ecommerce Solution & Highly Rated'
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

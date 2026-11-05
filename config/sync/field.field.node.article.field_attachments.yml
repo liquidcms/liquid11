@@ -1,0 +1,27 @@
+uuid: 5a0bbfa7-36bf-4a12-b43e-f0837605aed4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_attachments
+    - node.type.article
+  module:
+    - file
+id: node.article.field_attachments
+field_name: field_attachments
+entity_type: node
+bundle: article
+label: Attachments
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: attachments
+  file_extensions: 'pdf txt doc docx xls xlsx odt ppt pptx png jpg vsd rtf zip tar'
+  max_filesize: ''
+  description_field: false
+field_type: file

@@ -1,0 +1,23 @@
+uuid: 55ce2964-6dac-49e5-9037-0a563d5b32f0
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.blog_categories
+  module:
+    - taxonomy
+id: taxonomy_term_blog_categories
+label: 'Taxonomy term - Blog Categories'
+type: 'canonical_entities:taxonomy_term'
+pattern: '/blog/[term:name]'
+selection_criteria:
+  -
+    id: 'entity_bundle:taxonomy_term'
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    bundles:
+      blog_categories: blog_categories
+selection_logic: and
+weight: 0
+relationships: {  }

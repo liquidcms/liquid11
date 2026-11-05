@@ -1,0 +1,24 @@
+uuid: 6ecde782-19e8-458f-8ca6-6987887112d2
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - evolve
+id: evolve_page_title
+theme: evolve
+region: page_title
+weight: 0
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: page_title
+  label_display: '0'
+  provider: core
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: '<front>'

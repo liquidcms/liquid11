@@ -1,0 +1,22 @@
+uuid: 335b31de-0b46-4d33-a635-cdcbd3c2132a
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+_core:
+  default_config_hash: S_nZ2x16S_MOgZQw7PwvLqmB8CmEmOjFkyPJoc8OcnM
+id: node.field_tax_rate
+field_name: field_tax_rate
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,41 @@
+name: Evolve
+type: theme
+description: 'D11 port of the Evolve (drupalexp) D7 theme used on liquidcms.ca. Keeps Bootstrap 3 and the original CSS so the site looks the same.'
+core_version_requirement: ^11
+base theme: stable9
+logo: logo.png
+libraries:
+  - evolve/global
+regions:
+  call_us: 'Call Us'
+  socials: Socials
+  top: 'Top (search)'
+  navigation: Navigation
+  banner: Banner
+  page_title: 'Page Title'
+  highlighted: Highlighted
+  tagline: Tagline
+  feature_first: 'Feature First'
+  feature_second: 'Feature Second'
+  feature_third: 'Feature Third'
+  feature_fourth: 'Feature Fourth'
+  content_top: 'Content Top'
+  user1: 'User 1'
+  user2: 'User 2'
+  user3: 'User 3'
+  help: Help
+  content: Content
+  left_sidebar: 'Left sidebar'
+  right_sidebar: 'Right sidebar'
+  content_bottom_second: 'Content Bottom Second'
+  testimonial: Testimonial
+  clients: Clients
+  extra_bottom2: 'Extra Bottom 2'
+  user18: 'User 18'
+  user19: 'User 19'
+  extra_bottom4: 'Extra Bottom 4'
+  bottom_first: 'Bottom First'
+  bottom_second: 'Bottom Second'
+  bottom_third: 'Bottom Third'
+  copyright: Copyright
+  socials_bottom: 'Socials Bottom'

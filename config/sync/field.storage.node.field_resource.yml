@@ -1,0 +1,23 @@
+uuid: 0e8bd5db-26fa-43ec-9673-cbc051547b68
+langcode: und
+status: true
+dependencies:
+  module:
+    - file
+    - node
+id: node.field_resource
+field_name: field_resource
+entity_type: node
+type: file
+settings:
+  target_type: file
+  display_field: false
+  display_default: false
+  uri_scheme: public
+module: file
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

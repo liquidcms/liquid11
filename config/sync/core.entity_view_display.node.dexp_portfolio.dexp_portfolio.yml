@@ -1,0 +1,44 @@
+uuid: cdb9314f-4977-4de6-9389-ad2d92b859b7
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.dexp_portfolio
+    - field.field.node.dexp_portfolio.body
+    - field.field.node.dexp_portfolio.field_drupal_version
+    - field.field.node.dexp_portfolio.field_portfolio_categories
+    - field.field.node.dexp_portfolio.field_portfolio_images
+    - field.field.node.dexp_portfolio.field_site
+    - field.field.node.dexp_portfolio.field_tags
+    - image.style.portfolio
+    - node.type.dexp_portfolio
+  module:
+    - image
+    - user
+id: node.dexp_portfolio.dexp_portfolio
+targetEntityType: node
+bundle: dexp_portfolio
+mode: dexp_portfolio
+content:
+  field_portfolio_images:
+    type: image
+    label: hidden
+    settings:
+      image_link: content
+      image_style: portfolio
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  body: true
+  field_drupal_version: true
+  field_portfolio_categories: true
+  field_site: true
+  field_tags: true

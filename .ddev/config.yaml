@@ -1,0 +1,9 @@
+# New Drupal 11 site.
+name: liquid11
+type: drupal11
+docroot: web
+php_version: "8.3"
+webserver_type: nginx-fpm
+database:
+  type: mysql
+  version: "8.0"

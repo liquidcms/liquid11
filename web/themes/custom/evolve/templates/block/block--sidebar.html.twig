@@ -1,0 +1,18 @@
+{#
+/**
+ * @file
+ * Sidebar block wrapper (D7 block--right_sidebar.tpl.php / block--left_sidebar.tpl.php).
+ */
+#}
+<div{{ attributes.addClass('block') }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h3 class="headline">{{ label }}</h3>
+    <span class="brd-headling"></span>
+  {% endif %}
+  {{ title_suffix }}
+  <div class="clearfix">&nbsp;</div>
+  <div class="content">
+    {{ content }}
+  </div>
+</div>

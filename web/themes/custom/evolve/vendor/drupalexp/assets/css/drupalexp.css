@@ -1,0 +1,57 @@
+.dexp-body-inner{
+	clear: both;
+	overflow: hidden;
+	/*overflow-y: auto;*/
+	position: relative;
+  height: 100%;
+}
+.dexp-sticky.fixed{
+	position: fixed;
+	width:100%;
+	top:0;
+	z-index:501;
+}
+.tp-bannertimer,.tp-bullets{
+  z-index:500;
+}
+
+#admin-menu .dropdown li li {
+   opacity: 1;
+}
+
+.what-we-do.block {
+  text-align: center;
+  padding-top:20px;
+}
+
+.what-we-do.block .content {
+  padding:0px 40px;
+}
+
+.what-we-do.block > h2 {
+  opacity: 0.45;
+  margin-top:0px;
+}
+
+.what-we-do ul {
+  width:31%;
+  text-align:left;
+  float: left;
+  margin:0;
+  padding:0;
+  padding-bottom: 30px;
+  margin-left:2%; 
+  list-style-type: none;
+}
+
+.what-we-do ul li i {
+  width:45px;
+  text-align: center;
+  font-size: 1.2em;
+  color: #57B8E4;
+}
+
+.what-we-do ul li {
+  line-height: 2em;
+  padding-bottom: 6px;
+}

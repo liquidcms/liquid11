@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Filterable portfolio grid, same markup as the D7 views-dexp-portfolio.tpl.php.
+ */
+#}
+{% if title %}<h3>{{ title }}</h3>{% endif %}
+{% if options.filter and categories %}
+  <div class="portfolio-filters">
+    <ul id="{{ filter_id }}" class="dexp-portfolio-filter clearfix" data-option-key="filter">
+      <li><a class="active" href="#" data-filter="*">{{ 'Show All'|t }}</a></li>
+      {% for key, name in categories %}
+        <li><a href="#" data-filter="{{ key }}">{{ name }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}
+<div id="{{ view_id }}" class="dexp-grid-items row">
+  {% for row in rows %}
+    {# Classes go on a wrapper: the node itself is render-cached across views. #}
+    <div class="dexp-portfolio-item {{ row['#evolve_node_classes']|join(' ') }}">{{ row }}</div>
+  {% endfor %}
+</div>

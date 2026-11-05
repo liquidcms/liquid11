@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Tax Rate'
+vid: tax_rate
+description: 'Sales tax applied to a client (term name is the Xero TaxType).'
+weight: 11
+new_revision: false

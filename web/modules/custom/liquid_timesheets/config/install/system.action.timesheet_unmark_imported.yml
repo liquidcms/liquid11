@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - liquid_timesheets
+id: timesheet_unmark_imported
+label: 'Unmark imported'
+type: timesheet
+plugin: timesheet_unmark_imported
+configuration: {  }

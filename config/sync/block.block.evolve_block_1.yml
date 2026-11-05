@@ -1,0 +1,23 @@
+uuid: d8f4d49e-d29b-422c-b959-e24c808c5be2
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:6de1b2b2-2a8d-4760-a108-2dc6ac1aa815'
+  module:
+    - block_content
+  theme:
+    - evolve
+id: evolve_block_1
+theme: evolve
+region: call_us
+weight: 0
+provider: null
+plugin: 'block_content:6de1b2b2-2a8d-4760-a108-2dc6ac1aa815'
+settings:
+  id: 'block_content:6de1b2b2-2a8d-4760-a108-2dc6ac1aa815'
+  label: 'Call Us'
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility: {  }

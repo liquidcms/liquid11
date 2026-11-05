@@ -1,0 +1,6 @@
+{% extends "block.html.twig" %}
+{% block content %}
+  {% if content['#title'] %}
+    <div class="page_title_no_sub"><h1 class="page_title">{{ content['#title'] }}</h1></div>
+  {% endif %}
+{% endblock %}

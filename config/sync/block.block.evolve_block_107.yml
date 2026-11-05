@@ -1,0 +1,23 @@
+uuid: 25e64f4f-8e08-43f3-b984-d57382d46b54
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:a5e201bb-0661-4a60-9281-efe834fd3bbb'
+  module:
+    - block_content
+  theme:
+    - evolve
+id: evolve_block_107
+theme: evolve
+region: bottom_third
+weight: 0
+provider: null
+plugin: 'block_content:a5e201bb-0661-4a60-9281-efe834fd3bbb'
+settings:
+  id: 'block_content:a5e201bb-0661-4a60-9281-efe834fd3bbb'
+  label: 'Drupal Assoc'
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility: {  }

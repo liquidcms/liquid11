@@ -1,0 +1,25 @@
+uuid: 40119345-c070-46e4-8db0-897dd50ff7dc
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: JXYDC3SLZUXSwnTjR9rBo6uZF3vDSZd8S7EA5ZOH7kM
+name: thumbnail
+label: 'Thumbnail (100x100)'
+effects:
+  aa3b5e40-3838-4351-89f1-5109ebe63d4f:
+    uuid: aa3b5e40-3838-4351-89f1-5109ebe63d4f
+    id: image_scale
+    weight: 0
+    data:
+      width: 100
+      height: 100
+      upscale: true
+  91544902-48ce-462d-b223-f6d1e50c8f00:
+    uuid: 91544902-48ce-462d-b223-f6d1e50c8f00
+    id: image_scale_and_crop
+    weight: 2
+    data:
+      width: 100
+      height: 100
+      anchor: center-center

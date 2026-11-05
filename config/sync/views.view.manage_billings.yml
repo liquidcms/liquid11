@@ -1,0 +1,639 @@
+uuid: 57615679-c694-4b67-85aa-0fd723f813ed
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_currency
+    - field.storage.node.field_tax_rate
+    - field.storage.user.field_hourly_rate
+    - system.menu.admin
+  module:
+    - csv_serialization
+    - datetime
+    - liquid_timesheets
+    - node
+    - rest
+    - serialization
+    - text
+    - user
+    - views_data_export
+id: manage_billings
+label: 'Manage billings'
+module: views
+description: 'Timesheet billing: filter, mark invoiced, export to Xero.'
+tag: ''
+base_table: timesheet
+base_field: id
+display:
+  default:
+    id: default
+    display_title: Default
+    display_plugin: default
+    position: 0
+    display_options:
+      title: 'Manage billings'
+      fields:
+        timesheet_bulk_form:
+          id: timesheet_bulk_form
+          table: timesheet
+          field: timesheet_bulk_form
+          entity_type: timesheet
+          plugin_id: bulk_form
+          label: ''
+          action_title: Action
+          include_exclude: include
+          selected_actions:
+            - timesheet_mark_imported
+            - timesheet_mark_client_invoiced
+            - timesheet_mark_client_invoiced_imported
+            - timesheet_unmark_imported
+            - timesheet_unmark_client_invoiced
+        work_date:
+          id: work_date
+          table: timesheet
+          field: work_date
+          entity_type: timesheet
+          entity_field: work_date
+          plugin_id: field
+          label: Date
+          type: datetime_default
+          settings:
+            format_type: html_date
+        client:
+          id: client
+          table: node_field_data
+          field: title
+          relationship: client
+          entity_type: node
+          entity_field: title
+          plugin_id: field
+          label: Client
+          settings:
+            link_to_entity: false
+        project:
+          id: project
+          table: timesheet_project
+          field: title
+          relationship: project
+          entity_type: timesheet_project
+          entity_field: title
+          plugin_id: field
+          label: Project
+          settings:
+            link_to_entity: true
+        hours:
+          id: hours
+          table: timesheet
+          field: hours
+          entity_type: timesheet
+          entity_field: hours
+          plugin_id: field
+          label: Hours
+          type: number_decimal
+          settings:
+            thousand_separator: ''
+            scale: 2
+        imported:
+          id: imported
+          table: timesheet
+          field: imported
+          entity_type: timesheet
+          entity_field: imported
+          plugin_id: field
+          label: Imported
+          settings:
+            format: yes-no
+        client_invoiced:
+          id: client_invoiced
+          table: timesheet
+          field: client_invoiced
+          entity_type: timesheet
+          entity_field: client_invoiced
+          plugin_id: field
+          label: 'Client invoiced'
+          settings:
+            format: yes-no
+        description:
+          id: description
+          table: timesheet
+          field: description__value
+          entity_type: timesheet
+          entity_field: description
+          plugin_id: field
+          label: Details
+          type: text_default
+        uid:
+          id: uid
+          table: timesheet
+          field: uid
+          entity_type: timesheet
+          entity_field: uid
+          plugin_id: field
+          label: Employee
+          type: entity_reference_label
+          settings:
+            link: false
+        billing_rate:
+          id: billing_rate
+          table: timesheet_project
+          field: billing_rate
+          relationship: project
+          entity_type: timesheet_project
+          entity_field: billing_rate
+          plugin_id: field
+          label: Rate
+          type: entity_reference_label
+          settings:
+            link: false
+        operations:
+          id: operations
+          table: timesheet
+          field: operations
+          entity_type: timesheet
+          plugin_id: entity_operations
+          label: Edit
+      pager:
+        type: none
+        options:
+          offset: 0
+      exposed_form:
+        type: basic
+        options:
+          submit_button: Filter
+          reset_button: true
+      access:
+        type: perm
+        options:
+          perm: 'administer timesheets'
+      empty:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          plugin_id: text_custom
+          empty: true
+          content: 'No timesheets match these filters.'
+      sorts:
+        work_date:
+          id: work_date
+          table: timesheet
+          field: work_date
+          entity_type: timesheet
+          entity_field: work_date
+          plugin_id: datetime
+          order: ASC
+          granularity: day
+        changed:
+          id: changed
+          table: timesheet
+          field: changed
+          entity_type: timesheet
+          entity_field: changed
+          plugin_id: date
+          order: ASC
+      filters:
+        client:
+          id: client
+          table: timesheet_project
+          field: client
+          relationship: project
+          entity_type: timesheet_project
+          entity_field: client
+          plugin_id: entity_reference
+          operator: or
+          value: {  }
+          exposed: true
+          expose:
+            operator_id: client_op
+            label: Client
+            identifier: client
+            remember: true
+            multiple: true
+          sub_handler: 'default:node'
+          widget: select
+          sub_handler_settings:
+            target_bundles:
+              clients: clients
+            sort:
+              field: title
+              direction: ASC
+            auto_create: false
+        project:
+          id: project
+          table: timesheet
+          field: project
+          entity_type: timesheet
+          entity_field: project
+          plugin_id: entity_reference
+          operator: or
+          value: {  }
+          exposed: true
+          expose:
+            operator_id: project_op
+            label: Project
+            identifier: project
+            remember: true
+            multiple: true
+          sub_handler: 'default:timesheet_project'
+          widget: select
+          sub_handler_settings:
+            sort:
+              field: title
+              direction: ASC
+            auto_create: false
+        billing_rate:
+          id: billing_rate
+          table: timesheet_project
+          field: billing_rate
+          relationship: project
+          entity_type: timesheet_project
+          entity_field: billing_rate
+          plugin_id: entity_reference
+          operator: not
+          value: {  }
+          exposed: true
+          expose:
+            operator_id: rate_op
+            label: 'Billing rates to exclude'
+            identifier: rate
+            remember: true
+            multiple: true
+          sub_handler: 'default:taxonomy_term'
+          widget: select
+          sub_handler_settings:
+            target_bundles:
+              billing_rate: billing_rate
+            sort:
+              field: name
+              direction: ASC
+            auto_create: false
+        uid:
+          id: uid
+          table: timesheet
+          field: uid
+          entity_type: timesheet
+          entity_field: uid
+          plugin_id: entity_reference
+          operator: or
+          value: {  }
+          exposed: true
+          expose:
+            operator_id: staff_op
+            label: Staff
+            identifier: staff
+            remember: true
+            multiple: true
+          sub_handler: 'default:user'
+          widget: select
+          sub_handler_settings:
+            sort:
+              field: name
+              direction: ASC
+            auto_create: false
+        imported:
+          id: imported
+          table: timesheet
+          field: imported
+          entity_type: timesheet
+          entity_field: imported
+          plugin_id: boolean
+          value: All
+          exposed: true
+          expose:
+            operator_id: imported_op
+            label: Imported
+            identifier: imported
+            remember: true
+            multiple: false
+        client_invoiced:
+          id: client_invoiced
+          table: timesheet
+          field: client_invoiced
+          entity_type: timesheet
+          entity_field: client_invoiced
+          plugin_id: boolean
+          value: '0'
+          exposed: true
+          expose:
+            operator_id: client_invoiced_op
+            label: 'Client invoiced'
+            identifier: client_invoiced
+            remember: true
+            multiple: false
+        work_date:
+          id: work_date
+          table: timesheet
+          field: work_date
+          entity_type: timesheet
+          entity_field: work_date
+          plugin_id: datetime
+          operator: between
+          value:
+            min: ''
+            max: ''
+            value: ''
+            type: date
+          exposed: true
+          expose:
+            operator_id: date_op
+            label: Date
+            identifier: date
+            remember: true
+            multiple: false
+        description:
+          id: description
+          table: timesheet
+          field: description__value
+          entity_type: timesheet
+          entity_field: description
+          plugin_id: string
+          operator: contains
+          value: ''
+          exposed: true
+          expose:
+            operator_id: details_op
+            label: 'Details contains'
+            identifier: details
+            remember: true
+            multiple: false
+      style:
+        type: table
+        options:
+          sticky: true
+          empty_table: true
+      row:
+        type: fields
+      relationships:
+        project:
+          id: project
+          table: timesheet
+          field: project
+          entity_type: timesheet
+          entity_field: project
+          plugin_id: standard
+          required: true
+        client:
+          id: client
+          table: timesheet_project
+          field: client
+          relationship: project
+          entity_type: timesheet_project
+          entity_field: client
+          plugin_id: standard
+          required: true
+        uid:
+          id: uid
+          table: timesheet
+          field: uid
+          entity_type: timesheet
+          entity_field: uid
+          plugin_id: standard
+          required: false
+      header:
+        export_link:
+          id: export_link
+          table: timesheet
+          field: export_link
+          entity_type: timesheet
+          plugin_id: liquid_timesheets_export_link
+          label: 'Download Xero CSV'
+          empty: false
+          display_id: xero_csv
+        hours_total:
+          id: hours_total
+          table: timesheet
+          field: hours_total
+          entity_type: timesheet
+          plugin_id: liquid_timesheets_hours_total
+      footer:
+        hours_total:
+          id: hours_total
+          table: timesheet
+          field: hours_total
+          entity_type: timesheet
+          plugin_id: liquid_timesheets_hours_total
+      display_extenders: {  }
+    cache_metadata:
+      max-age: 0
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - user.permissions
+      tags: {  }
+  page_1:
+    id: page_1
+    display_title: 'Manage billings'
+    display_plugin: page
+    position: 1
+    display_options:
+      display_extenders: {  }
+      path: admin/content/billing
+      menu:
+        type: normal
+        title: Billing
+        description: 'Filter timesheets, mark invoiced, export to Xero.'
+        weight: 22
+        expanded: false
+        menu_name: admin
+        parent: system.admin_content
+        context: ''
+    cache_metadata:
+      max-age: 0
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - user.permissions
+      tags: {  }
+  xero_csv:
+    id: xero_csv
+    display_title: 'Xero CSV'
+    display_plugin: data_export
+    position: 2
+    display_options:
+      fields:
+        contact:
+          id: contact
+          table: node_field_data
+          field: title
+          relationship: client
+          entity_type: node
+          entity_field: title
+          plugin_id: field
+          label: ContactName
+          settings:
+            link_to_entity: false
+        work_date:
+          id: work_date
+          table: timesheet
+          field: work_date
+          entity_type: timesheet
+          entity_field: work_date
+          plugin_id: field
+          label: Date
+          type: datetime_custom
+          settings:
+            date_format: m/d/Y
+        uid:
+          id: uid
+          table: timesheet
+          field: uid
+          entity_type: timesheet
+          entity_field: uid
+          plugin_id: field
+          label: Employee
+          type: entity_reference_label
+          settings:
+            link: false
+        invoice_date:
+          id: invoice_date
+          table: timesheet
+          field: invoice_date
+          entity_type: timesheet
+          plugin_id: liquid_timesheets_relative_date
+          label: InvoiceDate
+          offset: now
+          format: d-m-Y
+        due_date:
+          id: due_date
+          table: timesheet
+          field: due_date
+          entity_type: timesheet
+          plugin_id: liquid_timesheets_relative_date
+          label: DueDate
+          offset: '+15 days'
+          format: d-m-Y
+        item_code:
+          id: item_code
+          table: timesheet_project
+          field: billing_rate
+          relationship: project
+          entity_type: timesheet_project
+          entity_field: billing_rate
+          plugin_id: field
+          label: InventoryItemCode
+          type: entity_reference_label
+          settings:
+            link: false
+        description:
+          id: description
+          table: timesheet
+          field: description__value
+          entity_type: timesheet
+          entity_field: description
+          plugin_id: field
+          label: Description
+          alter:
+            alter_text: true
+            text: '{{ work_date }} - {{ uid }} - {{ description }}'
+          type: basic_string
+        quantity:
+          id: quantity
+          table: timesheet
+          field: hours
+          entity_type: timesheet
+          entity_field: hours
+          plugin_id: field
+          label: Quantity
+          type: number_decimal
+          settings:
+            thousand_separator: ''
+            scale: 2
+        unit_amount:
+          id: unit_amount
+          table: user__field_hourly_rate
+          field: field_hourly_rate
+          relationship: uid
+          plugin_id: field
+          label: UnitAmount
+          type: number_decimal
+          settings:
+            thousand_separator: ''
+            scale: 2
+            prefix_suffix: false
+        tax_type:
+          id: tax_type
+          table: node__field_tax_rate
+          field: field_tax_rate
+          relationship: client
+          plugin_id: field
+          label: TaxType
+          type: entity_reference_label
+          settings:
+            link: false
+        account_code:
+          id: account_code
+          table: views
+          field: nothing
+          plugin_id: custom
+          label: AccountCode
+          alter:
+            alter_text: true
+            text: '4002'
+          hide_alter_empty: false
+        invoice_number:
+          id: invoice_number
+          table: timesheet
+          field: next_invoice_number
+          entity_type: timesheet
+          plugin_id: liquid_timesheets_next_invoice_number
+          label: InvoiceNumber
+        currency:
+          id: currency
+          table: node__field_currency
+          field: field_currency
+          relationship: client
+          plugin_id: field
+          label: Currency
+          type: entity_reference_label
+          settings:
+            link: false
+      pager:
+        type: none
+        options:
+          offset: 0
+      style:
+        type: data_export
+        options:
+          formats:
+            csv: csv
+          csv_settings:
+            delimiter: ','
+            enclosure: '"'
+            escape_char: \
+            strip_tags: true
+            trim: true
+            encoding: utf8
+            utf8_bom: '0'
+            use_serializer_encode_only: false
+      row:
+        type: data_field
+        options: {  }
+      defaults:
+        style: false
+        row: false
+        fields: false
+        header: false
+        footer: false
+      header: {  }
+      footer: {  }
+      display_extenders: {  }
+      path: admin/content/billing/xero.csv
+      displays:
+        page_1: page_1
+      filename: 'xero-[date:custom:Y-m-d].csv'
+      export_filesystem: public
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - request_format
+        - url
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_currency'
+        - 'config:field.storage.node.field_tax_rate'
+        - 'config:field.storage.user.field_hourly_rate'
+        - 'config:liquid_timesheets.settings'

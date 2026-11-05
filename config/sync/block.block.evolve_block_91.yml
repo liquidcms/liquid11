@@ -1,0 +1,28 @@
+uuid: 9be07c4e-0952-4f21-b19c-cd7351301aad
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:9e1e29a1-9538-485b-a8c1-0aa6f1549c2a'
+  module:
+    - block_content
+    - system
+  theme:
+    - evolve
+id: evolve_block_91
+theme: evolve
+region: extra_bottom2
+weight: 0
+provider: null
+plugin: 'block_content:9e1e29a1-9538-485b-a8c1-0aa6f1549c2a'
+settings:
+  id: 'block_content:9e1e29a1-9538-485b-a8c1-0aa6f1549c2a'
+  label: 'Photo Gallery & Recent Posts'
+  label_display: visible
+  provider: block_content
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

@@ -1,0 +1,34 @@
+# Field UI hangs "Manage fields" off these settings pages.
+entity.timesheet.settings:
+  path: '/admin/structure/timesheet'
+  defaults:
+    _form: '\Drupal\liquid_timesheets\Form\EntitySettingsForm'
+    _title: 'Timesheet settings'
+  requirements:
+    _permission: 'administer timesheets'
+entity.timesheet_project.settings:
+  path: '/admin/structure/timesheet-project'
+  defaults:
+    _form: '\Drupal\liquid_timesheets\Form\EntitySettingsForm'
+    _title: 'Project settings'
+  requirements:
+    _permission: 'administer timesheets'
+liquid_timesheets.client_projects:
+  path: '/node/{node}/projects'
+  defaults:
+    _controller: '\Drupal\liquid_timesheets\Controller\ClientProjectsController::list'
+    _title: 'Projects'
+  requirements:
+    _custom_access: '\Drupal\liquid_timesheets\Controller\ClientProjectsController::access'
+  options:
+    _admin_route: TRUE
+    parameters:
+      node:
+        type: entity:node
+liquid_timesheets.settings:
+  path: '/admin/config/system/timesheets'
+  defaults:
+    _form: '\Drupal\liquid_timesheets\Form\TimesheetSettingsForm'
+    _title: 'Timesheet settings'
+  requirements:
+    _permission: 'administer timesheets'

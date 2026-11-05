@@ -1,0 +1,9 @@
+uuid: b6a9a31f-d38f-4df2-b5e5-ac57e026c9d3
+langcode: en
+status: true
+dependencies: {  }
+name: 'Newsletter categories'
+vid: newsletter_categories
+description: 'Vocabulary used to store the categories of newsletter lists'
+weight: 0
+new_revision: false

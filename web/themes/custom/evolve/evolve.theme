@@ -1,0 +1,215 @@
+<?php
+
+/**
+ * @file
+ * Evolve theme: D11 port of the D7 Evolve/drupalexp theme.
+ */
+
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Render\Element;
+
+/**
+ * Per-block wrapper settings carried over from D7.
+ *
+ * Keyed by D11 block config id (without the "evolve_" prefix). Each entry
+ * holds the D7 html id (so existing CSS still applies), extra classes
+ * (D7 block_class) and drupalexp attributes (animation, inline style).
+ */
+function _evolve_block_settings(): array {
+  return [
+    'block_1' => ['id' => 'block-block-1'],
+    'block_2' => ['id' => 'block-block-2'],
+    'block_3' => ['id' => 'block-block-3'],
+    'block_4' => ['id' => 'block-block-4', 'class' => 'prefix dexp-animate', 'animate' => 'fadeInLeft'],
+    'block_5' => ['id' => 'block-block-5'],
+    'block_10' => ['id' => 'block-block-10'],
+    'block_11' => ['id' => 'block-block-11', 'class' => 'dexp-animate', 'animate' => 'bounceIn'],
+    'block_12' => ['id' => 'block-block-12', 'class' => 'dexp-animate', 'animate' => 'bounceIn'],
+    'block_13' => ['id' => 'block-block-13', 'class' => 'dexp-animate', 'animate' => 'bounceIn'],
+    'block_14' => ['id' => 'block-block-14'],
+    'block_40' => ['id' => 'block-block-40', 'class' => 'dexp-animate', 'animate' => 'fadeInLeft'],
+    'block_68' => ['id' => 'block-block-68', 'class' => 'main-headline', 'style' => 'text-align:center;padding:40px 0 0 0'],
+    'block_70' => ['id' => 'block-block-70', 'class' => 'dexp-animate', 'animate' => 'fadeInRight'],
+    'block_71' => ['id' => 'block-block-71', 'class' => 'dexp-animate', 'animate' => 'fadeInUp'],
+    'block_76' => ['id' => 'block-block-76', 'class' => 'main-headline', 'style' => 'padding:10px 0 70px 0'],
+    'block_77' => ['id' => 'block-block-77', 'class' => 'dexp-animate', 'animate' => 'flipInX', 'style' => 'padding:20px 0 0'],
+    'block_78' => ['id' => 'block-block-78', 'class' => 'dexp-animate d-none d-md-block', 'animate' => 'fadeInUp', 'style' => 'text-align:center;padding:20px 0 0 0'],
+    'block_79' => ['id' => 'block-block-79', 'class' => 'dexp-animate', 'animate' => 'flipInX', 'style' => 'padding:20px 0 0'],
+    'block_91' => ['id' => 'block-block-91', 'class' => 'main-headline', 'style' => 'padding:0 0 30px 0'],
+    'block_104' => ['id' => 'block-block-104'],
+    'block_107' => ['id' => 'block-block-107'],
+    'layerslider' => ['id' => 'block-dexp-layerslider-dexp-layerslider-block-1', 'class' => 'block-dexp-layerslider d-none d-md-block', 'library' => 'evolve/layerslider'],
+    'search' => ['id' => 'block-search-form', 'class' => 'block-search dexp-animate', 'animate' => 'fadeInRight'],
+    'main_menu' => ['id' => 'block-dexp-menu-dexp-menu-block', 'class' => 'block-dexp-menu'],
+    'page_title' => ['id' => 'block-dexp-page-elements-dexp-page-elements-page-title', 'class' => 'block-dexp-page-elements'],
+    'content' => ['id' => 'block-system-main', 'class' => 'block-system'],
+    'views_blog_block_3' => ['id' => 'block-views-blog-block-3', 'class' => 'block-views haft-left dexp-animate', 'animate' => 'fadeInDown'],
+    'views_blog_block_5' => ['id' => 'block-views-blog-block-5', 'class' => 'block-views dexp-animate', 'animate' => 'fadeInRight'],
+    'views_blog_categories_block' => ['id' => 'block-views-blog-categories-block', 'class' => 'block-views dexp-animate', 'animate' => 'fadeInRight', 'style' => 'padding:20px 0 0 0'],
+    'views_blog_categories_block_1' => ['id' => 'block-views-blog-categories-block-1', 'class' => 'block-views haft-left dexp-animate', 'animate' => 'fadeInRight'],
+    'views_clients_block' => ['id' => 'block-views-clients-block', 'class' => 'block-views dexp-animate', 'animate' => 'bounceInUp', 'style' => 'padding:20px 0'],
+    'views_gallery_block' => ['id' => 'block-views-gallery-block', 'class' => 'block-views dexp-animate', 'animate' => 'fadeInLeft', 'style' => 'padding:0 0 50px 0'],
+    'views_latest_projects_block' => ['id' => 'block-views-latest-projects-block', 'class' => 'block-views main-headline dexp-animate', 'animate' => 'fadeInUp', 'style' => 'text-align:center'],
+    'views_latest_projects_block_1' => ['id' => 'block-views-latest-projects-block-1', 'class' => 'block-views border-bottom-headline', 'style' => 'margin:30px 0 50px 0'],
+    'views_team_block_2' => ['id' => 'block-views-team-block-2', 'class' => 'block-views main-headline dexp-animate', 'animate' => 'fadeInDown'],
+    'views_testimonial_block' => [
+      'id' => 'block-views-testimonial-block',
+      'class' => 'block-views main-headline dexp-parallax',
+      'attributes' => ['data-background-width' => '1900', 'data-background-height' => '836', 'data-background-ratio' => '0.3'],
+      'style' => 'text-align:center;padding:100px 0;background-image:url(/sites/default/files/FB-Cover-lighter.jpg);background-position:50% top',
+    ],
+    'views_ios_apps_block' => ['id' => 'block-views-ios-apps-block', 'class' => 'block-views'],
+  ];
+}
+
+/**
+ * Implements hook_theme().
+ */
+function evolve_theme(): array {
+  return [
+    'evolve_tabs' => ['variables' => ['tabs' => []]],
+  ];
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for block.
+ *
+ * Sidebar blocks used their own template in D7.
+ */
+function evolve_theme_suggestions_block_alter(array &$suggestions, array $variables): void {
+  $id = $variables['elements']['#id'] ?? NULL;
+  $block = $id ? \Drupal::entityTypeManager()->getStorage('block')->load($id) : NULL;
+  if ($block && in_array($block->getRegion(), ['left_sidebar', 'right_sidebar'], TRUE)) {
+    array_unshift($suggestions, 'block__sidebar');
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for html.
+ */
+function evolve_preprocess_html(array &$variables): void {
+  $variables['attributes']['class'][] = $variables['root_path'] ? 'not-front' : 'front';
+  $variables['attributes']['class'][] = $variables['logged_in'] ? 'logged-in' : 'not-logged-in';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for page.
+ *
+ * Mirrors drupalexp: content takes whatever width the sidebars leave.
+ */
+function evolve_preprocess_page(array &$variables): void {
+  $sidebars = (int) !empty($variables['page']['left_sidebar']) + (int) !empty($variables['page']['right_sidebar']);
+  $sidebar_cols = 3;
+  // The D7 contact page split content and sidebar evenly.
+  if (in_array(\Drupal::routeMatch()->getRouteName(), ['contact.site_page', 'entity.contact_form.canonical'], TRUE)) {
+    $sidebar_cols = 6;
+  }
+  $variables['sidebar_cols'] = $sidebar_cols;
+  $variables['content_cols'] = 12 - $sidebars * $sidebar_cols;
+  $variables['logo'] = \Drupal::service('file_url_generator')->generateString(theme_get_setting('logo.url'));
+  $variables['site_name'] = \Drupal::config('system.site')->get('name');
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for the site-wide contact form.
+ *
+ * D7's contact form had no Preview button.
+ */
+function evolve_form_contact_message_feedback_form_alter(array &$form): void {
+  $form['actions']['preview']['#access'] = FALSE;
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for node.
+ *
+ * Supplies the pieces the D7 node templates built in PHP.
+ */
+function evolve_preprocess_node(array &$variables): void {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  $view_mode = $variables['view_mode'];
+
+  // D7 used realname: "First Last" instead of the username.
+  $owner = $node->getOwner();
+  $name = $owner && $owner->hasField('field_first_name')
+    ? trim($owner->get('field_first_name')->value . ' ' . $owner->get('field_last_name')->value)
+    : '';
+  $variables['author_display_name'] = $name ?: ($owner ? $owner->getDisplayName() : '');
+
+  // Article media lives in a plain file field (D7 file_entity); show it as an
+  // image, falling back to the Drupal drop like the D7 teaser template did.
+  if ($node->bundle() === 'article' && $node->hasField('field_resource')) {
+    $file = $node->get('field_resource')->entity;
+    if ($file && $view_mode === 'full') {
+      $variables['teaser_image'] = ['#theme' => 'image', '#uri' => $file->getFileUri(), '#alt' => ''];
+    }
+    elseif ($file || $view_mode === 'teaser') {
+      $variables['teaser_image'] = [
+        '#theme' => 'image_style',
+        '#style_name' => 'medium_blog',
+        '#uri' => $file ? $file->getFileUri() : 'public://drupal2.png',
+        '#alt' => '',
+      ];
+    }
+  }
+  if ($node->bundle() === 'dexp_portfolio' && $node->hasField('field_portfolio_images')) {
+    $generator = \Drupal::service('file_url_generator');
+    $variables['portfolio_images'] = [];
+    foreach ($node->get('field_portfolio_images') as $item) {
+      if ($item->entity) {
+        $variables['portfolio_images'][] = $generator->generateString($item->entity->getFileUri());
+      }
+    }
+    // Individual image render arrays, for the full-page carousel.
+    $field = $variables['content']['field_portfolio_images'] ?? [];
+    $variables['portfolio_image_items'] = array_map(fn($delta) => $field[$delta], Element::children($field));
+    if ($view_mode === 'teaser' && isset($variables['content']['field_portfolio_images'][0])) {
+      $variables['teaser_image'] = $variables['content']['field_portfolio_images'][0];
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block.
+ */
+function evolve_preprocess_block(array &$variables): void {
+  $id = $variables['elements']['#id'] ?? '';
+  $key = preg_replace('/^evolve_/', '', $id);
+  $settings = _evolve_block_settings()[$key] ?? NULL;
+  if (!$settings) {
+    return;
+  }
+  $variables['attributes']['id'] = $settings['id'];
+  // D7 module class, e.g. block-block for custom blocks.
+  if (str_starts_with($key, 'block_')) {
+    $variables['attributes']['class'][] = 'block-block';
+  }
+  if (!empty($settings['class'])) {
+    foreach (explode(' ', $settings['class']) as $class) {
+      $variables['attributes']['class'][] = Html::getClass($class);
+    }
+  }
+  if (!empty($settings['animate'])) {
+    $variables['attributes']['data-animate'] = $settings['animate'];
+  }
+  if (!empty($settings['style'])) {
+    $variables['attributes']['style'] = $settings['style'];
+  }
+  foreach ($settings['attributes'] ?? [] as $name => $value) {
+    $variables['attributes'][$name] = $value;
+  }
+  if (!empty($settings['library'])) {
+    $variables['#attached']['library'][] = $settings['library'];
+  }
+  // Blog sidebar tabs: D7 embedded two views here with [tabs]/[embeded]
+  // shortcodes; render the live views instead of the stored snapshot.
+  if ($key === 'block_14') {
+    $variables['content'] = [
+      '#theme' => 'evolve_tabs',
+      '#tabs' => [
+        'recent' => ['title' => t('Recent'), 'content' => views_embed_view('blog', 'block_1')],
+        'popular' => ['title' => t('Popular'), 'content' => views_embed_view('blog', 'block_2')],
+      ],
+    ];
+  }
+}

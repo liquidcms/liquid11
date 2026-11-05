@@ -1,0 +1,11 @@
+uuid: a8ff1113-642a-4a9c-8110-d31cbcc2a6d2
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: H8X8J1Pui2p1PxSGGM5ieALFwKjf044b1U8p0Hzbb7M
+name: 'Tax Rate'
+vid: tax_rate
+description: 'Sales tax applied to a client (term name is the Xero TaxType).'
+weight: 11
+new_revision: false

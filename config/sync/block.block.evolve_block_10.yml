@@ -1,0 +1,28 @@
+uuid: 5ed6c088-2c30-42a8-b1fc-f9f59bc7e15c
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:497f2ed6-9202-4447-87f9-821b52009bba'
+  module:
+    - block_content
+    - system
+  theme:
+    - evolve
+id: evolve_block_10
+theme: evolve
+region: tagline
+weight: 0
+provider: null
+plugin: 'block_content:497f2ed6-9202-4447-87f9-821b52009bba'
+settings:
+  id: 'block_content:497f2ed6-9202-4447-87f9-821b52009bba'
+  label: 'Home page Tagline'
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

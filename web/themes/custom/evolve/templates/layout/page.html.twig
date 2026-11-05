@@ -1,0 +1,172 @@
+{#
+/**
+ * @file
+ * Evolve page layout, rebuilt from the D7 drupalexp section/region markup.
+ *
+ * Each section prints only when one of its regions has content, as drupalexp did.
+ * content_cols and sidebar_cols come from evolve_preprocess_page().
+ */
+#}
+{% macro region(page, name, cols) %}
+  {% if page[name] %}
+  <div class="region region-{{ name|clean_class }} {{ cols }}">
+    {{ page[name] }}
+  </div>
+  {% endif %}
+{% endmacro %}
+{% import _self as r %}
+{% set full = 'col-12' %}
+{% set third = 'col-12 col-md-4' %}
+{% set half = 'col-12 col-md-6' %}
+
+<div class="dexp-body-inner default">
+
+{% if page.call_us or page.socials %}
+<section class="dexp-section d-none d-lg-block" id="section-top-bar">
+  <div class="container"><div class="row">
+    {{ r.region(page, 'call_us', half) }}
+    {{ r.region(page, 'socials', half) }}
+  </div></div>
+</section>
+{% endif %}
+
+<section class="dexp-section dexp-sticky" id="section-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-3 d-lg-none"><span class="fa fa-bars menu-toggle"></span></div>
+      {{ r.region(page, 'top', full) }}
+      <div class="col-6 col-lg-3"><a href="{{ path('<front>') }}" class="site-logo"><img src="{{ logo }}" alt="{{ site_name }}"/></a></div>
+      {% if page.top %}
+      <div class="col-2 col-md-1 order-last right search-toggle-bar">
+        <a href="#" class="search-toggle"><span class="fa fa-search"></span></a>
+      </div>
+      {% endif %}
+      {{ r.region(page, 'navigation', 'col-12 col-lg-8') }}
+    </div>
+  </div>
+</section>
+
+{% if page.banner %}
+<section class="dexp-section" id="section-banner">
+  <div class="dexp-container"><div class="row">
+    {{ r.region(page, 'banner', full) }}
+  </div></div>
+</section>
+{% endif %}
+
+{% if page.page_title %}
+<section class="dexp-section" id="section-page-title">
+  <div class="container"><div class="row">
+    {{ r.region(page, 'page_title', 'col-12 col-lg-7') }}
+  </div></div>
+</section>
+{% endif %}
+
+{% if page.tagline %}
+<section class="dexp-section" id="section-tagline" style="background-color:#232D37">
+  <div class="container"><div class="row">
+    {{ r.region(page, 'tagline', full) }}
+  </div></div>
+</section>
+{% endif %}
+
+{% if page.feature_first or page.feature_second or page.feature_third %}
+<section class="dexp-section" id="section-features">
+  <div class="container"><div class="row">
+    {{ r.region(page, 'feature_first', third) }}
+    {{ r.region(page, 'feature_second', third) }}
+    {{ r.region(page, 'feature_third', third) }}
+  </div></div>
+</section>
+{% endif %}
+
+{% if page.feature_fourth %}
+<section class="dexp-section bg-light-blue" id="section-features-second">
+  <div class="dexp-container"><div class="row">
+    {{ r.region(page, 'feature_fourth', full) }}
+  </div></div>
+</section>
+{% endif %}
+
+{% if page.content_top or page.user1 or page.user2 or page.user3 %}
+<section class="dexp-section d-none d-md-block" id="section-content-top">
+  <div class="container"><div class="row">
+    {{ r.region(page, 'content_top', full) }}
+    {{ r.region(page, 'user1', third) }}
+    {{ r.region(page, 'user2', third) }}
+    {{ r.region(page, 'user3', third) }}
+  </div></div>
+</section>
+{% endif %}
+
+{% if page.content or page.left_sidebar or page.right_sidebar %}
+<section class="dexp-section" id="section-main-content">
+  <a id="main-content" tabindex="-1"></a>
+  <div class="container"><div class="row">
+    {{ page.highlighted }}
+    {{ page.help }}
+    {{ r.region(page, 'left_sidebar', 'col-12 col-lg-' ~ sidebar_cols) }}
+    {{ r.region(page, 'content', 'col-12 col-lg-' ~ content_cols) }}
+    {{ r.region(page, 'right_sidebar', 'col-12 col-lg-' ~ sidebar_cols) }}
+  </div></div>
+</section>
+{% endif %}
+
+{% if page.content_bottom_second %}
+<section class="dexp-section bg-light-blue" id="section-content-bottom-second" style="background-color:#F2F4F6">
+  <div class="container"><div class="row">
+    {{ r.region(page, 'content_bottom_second', full) }}
+  </div></div>
+</section>
+{% endif %}
+
+{% if page.testimonial %}
+<section class="dexp-section d-none d-md-block" id="section-parallax-first">
+  <div class="dexp-container"><div class="row">
+    {{ r.region(page, 'testimonial', full) }}
+  </div></div>
+</section>
+{% endif %}
+
+{% if page.clients %}
+<section class="dexp-section" id="section-clients" style="background-color:#fff">
+  <div class="container"><div class="row">
+    {{ r.region(page, 'clients', full) }}
+  </div></div>
+</section>
+{% endif %}
+
+{% if page.extra_bottom2 or page.user18 or page.user19 %}
+<section class="dexp-section bg-light-blue" id="section-extra-bottom-2">
+  <div class="container"><div class="row">
+    {{ r.region(page, 'extra_bottom2', full) }}
+    {{ r.region(page, 'user18', 'col-12 col-lg-6') }}
+    {{ r.region(page, 'user19', 'col-12 col-lg-6') }}
+  </div></div>
+</section>
+{% endif %}
+
+{% if page.extra_bottom4 %}
+<section class="dexp-section" id="section-extra-bottom-4">
+  <div class="container"><div class="row">
+    {{ r.region(page, 'extra_bottom4', full) }}
+  </div></div>
+</section>
+{% endif %}
+
+<section class="dexp-section" id="section-bottom" style="background-color:#232D37">
+  <div class="container"><div class="row">
+    {{ r.region(page, 'bottom_first', 'col-12 col-md-6 col-lg-3') }}
+    {{ r.region(page, 'bottom_second', 'col-12 col-lg-6') }}
+    {{ r.region(page, 'bottom_third', 'col-12 col-md-6 col-lg-3') }}
+  </div></div>
+</section>
+
+<section class="dexp-section" id="section-footer">
+  <div class="container"><div class="row">
+    {{ r.region(page, 'copyright', half) }}
+    {{ r.region(page, 'socials_bottom', half) }}
+  </div></div>
+</section>
+
+</div>

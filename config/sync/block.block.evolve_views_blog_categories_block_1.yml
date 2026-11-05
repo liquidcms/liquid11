@@ -1,0 +1,24 @@
+uuid: 8a23c803-f933-47c2-a969-90336321cf91
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.blog_categories
+  module:
+    - views
+  theme:
+    - evolve
+id: evolve_views_blog_categories_block_1
+theme: evolve
+region: bottom_second
+weight: -42
+provider: null
+plugin: 'views_block:blog_categories-block_1'
+settings:
+  id: 'views_block:blog_categories-block_1'
+  label: Tags
+  label_display: visible
+  provider: views
+  views_label: Tags
+  items_per_page: null
+visibility: {  }

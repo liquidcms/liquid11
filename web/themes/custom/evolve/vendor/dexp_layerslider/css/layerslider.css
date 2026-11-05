@@ -1,0 +1,20 @@
+.layerslider-bannercontainer {
+  width:100%;
+  position:relative;
+  padding:0;
+}
+
+.layerslider-banner{
+  width:100%;
+  position:relative;
+}
+div[id^=dexp-layerslider] .tparrows{
+  opacity: 0;
+}
+div[id^=dexp-layerslider]:hover .tparrows{
+  opacity: 1;
+}
+div[id^=dexp-layerslider-layer] img{
+	width: 100%;
+	height: auto;
+}

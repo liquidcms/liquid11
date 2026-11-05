@@ -1,0 +1,28 @@
+uuid: d9014a76-4105-4e97-87da-cc3fa4c36fb1
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:2cf5de37-f24f-454b-85b3-a9194b1132e5'
+  module:
+    - block_content
+    - system
+  theme:
+    - evolve
+id: evolve_block_78
+theme: evolve
+region: user2
+weight: 0
+provider: null
+plugin: 'block_content:2cf5de37-f24f-454b-85b3-a9194b1132e5'
+settings:
+  id: 'block_content:2cf5de37-f24f-454b-85b3-a9194b1132e5'
+  label: 'Why Should You Choose Us: Image'
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

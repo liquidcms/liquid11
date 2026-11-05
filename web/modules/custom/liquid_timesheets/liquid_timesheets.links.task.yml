@@ -1,0 +1,39 @@
+entity.timesheet.canonical:
+  route_name: entity.timesheet.canonical
+  base_route: entity.timesheet.canonical
+  title: 'View'
+entity.timesheet.edit_form:
+  route_name: entity.timesheet.edit_form
+  base_route: entity.timesheet.canonical
+  title: 'Edit'
+entity.timesheet.delete_form:
+  route_name: entity.timesheet.delete_form
+  base_route: entity.timesheet.canonical
+  title: 'Delete'
+  weight: 10
+entity.timesheet.settings:
+  route_name: entity.timesheet.settings
+  base_route: entity.timesheet.settings
+  title: 'Settings'
+entity.timesheet_project.canonical:
+  route_name: entity.timesheet_project.canonical
+  base_route: entity.timesheet_project.canonical
+  title: 'View'
+entity.timesheet_project.edit_form:
+  route_name: entity.timesheet_project.edit_form
+  base_route: entity.timesheet_project.canonical
+  title: 'Edit'
+entity.timesheet_project.delete_form:
+  route_name: entity.timesheet_project.delete_form
+  base_route: entity.timesheet_project.canonical
+  title: 'Delete'
+  weight: 10
+entity.timesheet_project.settings:
+  route_name: entity.timesheet_project.settings
+  base_route: entity.timesheet_project.settings
+  title: 'Settings'
+liquid_timesheets.client_projects:
+  route_name: liquid_timesheets.client_projects
+  base_route: entity.node.canonical
+  title: 'Projects'
+  weight: 20

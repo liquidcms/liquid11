@@ -1,0 +1,11 @@
+uuid: 13a81d1a-9440-41fe-8089-29494e069119
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: CyiLChvx68othG2Vjbu1NOe6dhPu-KdbLOCn26cTe8w
+name: 'Billing Rate'
+vid: billing_rate
+description: 'Billing arrangement for a timesheet project (e.g. Fixed Cost Project).'
+weight: 10
+new_revision: false

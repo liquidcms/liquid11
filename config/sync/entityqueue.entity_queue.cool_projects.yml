@@ -1,0 +1,21 @@
+uuid: a05d3111-d814-4686-984d-7920bf47889a
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: cool_projects
+label: 'Cool Projects'
+description: null
+handler: simple
+handler_configuration: {  }
+entity_settings:
+  target_type: node
+  handler: 'default:node'
+  handler_settings:
+    target_bundles: {  }
+queue_settings:
+  min_size: 0
+  max_size: 0
+  act_as_queue: false
+  reverse: false

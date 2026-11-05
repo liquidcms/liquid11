@@ -1,0 +1,100 @@
+<?php
+
+/**
+ * @file
+ * Install hooks for Liquid Timesheets.
+ */
+
+declare(strict_types=1);
+
+use Drupal\Core\Config\FileStorage;
+use Drupal\taxonomy\Entity\Term;
+
+/**
+ * Implements hook_install().
+ *
+ * Adds the currency terms and puts the billing fields on the existing edit
+ * forms only; clients and user pages are public, so their view displays are
+ * left alone.
+ */
+function liquid_timesheets_install(bool $is_syncing): void {
+  if ($is_syncing) {
+    return;
+  }
+  foreach (['CAD', 'USD'] as $weight => $code) {
+    Term::create(['vid' => 'currency', 'name' => $code, 'weight' => $weight])->save();
+  }
+
+  $repo = \Drupal::service('entity_display.repository');
+
+  $repo->getFormDisplay('node', 'clients')
+    ->setComponent('field_tax_rate', ['type' => 'options_select', 'weight' => 21])
+    ->setComponent('field_currency', ['type' => 'options_select', 'weight' => 22])
+    ->save();
+
+  $repo->getFormDisplay('user', 'user')
+    ->setComponent('field_full_name', ['type' => 'string_textfield', 'weight' => -10])
+    ->setComponent('field_hourly_rate', ['type' => 'number', 'weight' => 20])
+    ->save();
+
+  $repo->getFormDisplay('taxonomy_term', 'tax_rate')
+    ->setComponent('field_tax_percent', ['type' => 'number', 'weight' => 5])
+    ->save();
+  $repo->getViewDisplay('taxonomy_term', 'tax_rate')
+    ->setComponent('field_tax_percent', ['type' => 'number_decimal', 'label' => 'inline', 'weight' => 5])
+    ->save();
+}
+
+/**
+ * Adds the next invoice number setting.
+ */
+function liquid_timesheets_update_11001(): void {
+  $config = \Drupal::configFactory()->getEditable('liquid_timesheets.settings');
+  if ($config->isNew()) {
+    $config->set('next_invoice_number', 8200)->save();
+  }
+}
+
+/**
+ * Replaces "Staff invoiced" with "Imported" and updates the bulk actions.
+ */
+function liquid_timesheets_update_11002(): void {
+  $manager = \Drupal::entityDefinitionUpdateManager();
+  if ($old = $manager->getFieldStorageDefinition('staff_invoiced', 'timesheet')) {
+    $manager->uninstallFieldStorageDefinition($old);
+  }
+  if (!$manager->getFieldStorageDefinition('imported', 'timesheet')) {
+    $field = \Drupal::service('entity_field.manager')->getBaseFieldDefinitions('timesheet')['imported'];
+    $manager->installFieldStorageDefinition('imported', 'timesheet', 'liquid_timesheets', $field);
+  }
+
+  $actions = \Drupal::entityTypeManager()->getStorage('action');
+  $actions->delete($actions->loadMultiple(['timesheet_mark_staff_invoiced', 'timesheet_unmark_staff_invoiced']));
+  $source = new FileStorage(\Drupal::service('extension.list.module')->getPath('liquid_timesheets') . '/config/install');
+  foreach (['timesheet_mark_imported', 'timesheet_unmark_imported', 'timesheet_mark_client_invoiced_imported'] as $id) {
+    if (!$actions->load($id)) {
+      $actions->createFromStorageRecord($source->read("system.action.$id"))->save();
+    }
+  }
+}
+
+/**
+ * Converts timesheet descriptions to plain text (now the only format).
+ */
+function liquid_timesheets_update_11003(): void {
+  \Drupal::database()->update('timesheet')
+    ->fields(['description__format' => 'plain_text'])
+    ->condition('description__format', 'plain_text', '<>')
+    ->execute();
+  \Drupal::entityTypeManager()->getStorage('timesheet')->resetCache();
+}
+
+/**
+ * Points the Xero CSV export at public:// (private:// isn't configured).
+ */
+function liquid_timesheets_update_11004(): void {
+  $config = \Drupal::configFactory()->getEditable('views.view.manage_billings');
+  if (!$config->isNew() && $config->get('display.xero_csv')) {
+    $config->set('display.xero_csv.display_options.export_filesystem', 'public')->save();
+  }
+}

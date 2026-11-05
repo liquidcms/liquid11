@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * Bootstrap grid, same markup as the D7 views-dexp-grid.tpl.php.
+ */
+#}
+{% if title %}<h3>{{ title }}</h3>{% endif %}
+<div class="dexp-grid-items">
+  <div class="row">
+    {% for row in rows %}
+      <div class="dexp-grid-item {{ col_classes }}">{{ row }}</div>
+    {% endfor %}
+  </div>
+</div>

@@ -1,0 +1,24 @@
+uuid: 90d91afb-5fce-427f-8e91-75c1a8c8a813
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.blog
+  module:
+    - views
+  theme:
+    - evolve
+id: evolve_views_blog_block_3
+theme: evolve
+region: bottom_second
+weight: -73
+provider: null
+plugin: 'views_block:blog-block_3'
+settings:
+  id: 'views_block:blog-block_3'
+  label: 'FRESH OFF THE BLOG'
+  label_display: visible
+  provider: views
+  views_label: 'FRESH OFF THE BLOG'
+  items_per_page: null
+visibility: {  }

@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - liquid_timesheets
+id: timesheet_mark_client_invoiced
+label: 'Mark client invoiced'
+type: timesheet
+plugin: timesheet_mark_client_invoiced
+configuration: {  }

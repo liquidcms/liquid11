@@ -1,0 +1,27 @@
+uuid: c283fdb6-92c6-4f56-9718-7bbf03b37d1a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_apk
+    - node.type.ios_app
+  module:
+    - file
+id: node.ios_app.field_apk
+field_name: field_apk
+entity_type: node
+bundle: ios_app
+label: APK
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: apps/android
+  file_extensions: apk
+  max_filesize: ''
+  description_field: false
+field_type: file

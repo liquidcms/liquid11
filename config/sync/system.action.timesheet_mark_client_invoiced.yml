@@ -1,0 +1,11 @@
+uuid: e703d9ab-3042-4df9-9fbf-2c63ea7380d4
+langcode: en
+status: true
+dependencies:
+  module:
+    - liquid_timesheets
+id: timesheet_mark_client_invoiced
+label: 'Mark client invoiced'
+type: timesheet
+plugin: timesheet_mark_client_invoiced
+configuration: {  }

@@ -1,0 +1,27 @@
+entity.timesheet.collection:
+  title: 'Timesheets'
+  description: 'List and manage timesheet entries.'
+  route_name: entity.timesheet.collection
+  parent: system.admin_content
+  weight: 20
+entity.timesheet_project.collection:
+  title: 'Projects'
+  description: 'Client projects that time is logged against.'
+  route_name: entity.timesheet_project.collection
+  parent: system.admin_content
+  weight: 21
+entity.timesheet.settings:
+  title: 'Timesheet fields'
+  description: 'Manage fields and displays for timesheets.'
+  route_name: entity.timesheet.settings
+  parent: system.admin_structure
+entity.timesheet_project.settings:
+  title: 'Project fields'
+  description: 'Manage fields and displays for timesheet projects.'
+  route_name: entity.timesheet_project.settings
+  parent: system.admin_structure
+liquid_timesheets.settings:
+  title: 'Timesheet settings'
+  description: 'Next invoice number for the Xero export.'
+  route_name: liquid_timesheets.settings
+  parent: system.admin_config_system

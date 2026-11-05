@@ -1,0 +1,15 @@
+uuid: e1e9a28d-d100-4e6d-9d60-2847e6179bb7
+langcode: en
+status: true
+dependencies: {  }
+name: team
+label: Team
+effects:
+  2dbc9b80-092b-4830-84be-e2f6ab8a83d7:
+    uuid: 2dbc9b80-092b-4830-84be-e2f6ab8a83d7
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 300
+      height: 300
+      anchor: center-center

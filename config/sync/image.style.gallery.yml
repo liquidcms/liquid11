@@ -1,0 +1,23 @@
+uuid: cefccf11-e9b4-4591-a2a9-ec0d5bdce068
+langcode: en
+status: true
+dependencies: {  }
+name: gallery
+label: Gallery
+effects:
+  5cb735d8-dfb1-48bc-89f6-3211d0e117bd:
+    uuid: 5cb735d8-dfb1-48bc-89f6-3211d0e117bd
+    id: image_scale
+    weight: 2
+    data:
+      width: 555
+      height: null
+      upscale: true
+  1a1ddab5-cddb-4b1c-abc6-211d599c8d47:
+    uuid: 1a1ddab5-cddb-4b1c-abc6-211d599c8d47
+    id: image_crop
+    weight: 3
+    data:
+      width: 555
+      height: 376
+      anchor: center-top

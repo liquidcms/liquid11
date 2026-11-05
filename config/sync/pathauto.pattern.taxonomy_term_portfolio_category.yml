@@ -1,0 +1,23 @@
+uuid: d65e3c71-30ff-4646-9e81-2126378692df
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.portfolio_category
+  module:
+    - taxonomy
+id: taxonomy_term_portfolio_category
+label: 'Taxonomy term - Portfolio Category'
+type: 'canonical_entities:taxonomy_term'
+pattern: '/portfolio/[term:name]'
+selection_criteria:
+  -
+    id: 'entity_bundle:taxonomy_term'
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    bundles:
+      portfolio_category: portfolio_category
+selection_logic: and
+weight: 0
+relationships: {  }

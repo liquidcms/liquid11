@@ -1,0 +1,23 @@
+uuid: 29a994ca-118f-4166-a5ec-64020bfe5681
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:49a1bd1d-2a91-4559-9ac6-4c81884cfb50'
+  module:
+    - block_content
+  theme:
+    - evolve
+id: evolve_block_2
+theme: evolve
+region: socials
+weight: 0
+provider: null
+plugin: 'block_content:49a1bd1d-2a91-4559-9ac6-4c81884cfb50'
+settings:
+  id: 'block_content:49a1bd1d-2a91-4559-9ac6-4c81884cfb50'
+  label: Socials
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility: {  }

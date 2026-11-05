@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: Currency
+vid: currency
+description: 'Currency a client is billed in.'
+weight: 12
+new_revision: false

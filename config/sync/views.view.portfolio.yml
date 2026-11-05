@@ -1,0 +1,108 @@
+uuid: c84add8d-3377-4723-aeb1-f8e2cf6ec33b
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.dexp_portfolio
+    - node.type.dexp_portfolio
+  module:
+    - evolve_views
+    - node
+    - user
+id: portfolio
+label: Portfolio
+module: views
+description: ''
+tag: ''
+base_table: node_field_data
+base_field: nid
+display:
+  default:
+    id: default
+    display_title: Default
+    display_plugin: default
+    position: 0
+    display_options:
+      title: Portfolio
+      pager:
+        type: none
+        options:
+          offset: 0
+      exposed_form:
+        type: basic
+        options: {  }
+      access:
+        type: perm
+        options:
+          perm: 'access content'
+      cache:
+        type: tag
+        options: {  }
+      sorts:
+        changed:
+          id: changed
+          table: node_field_data
+          field: changed
+          entity_type: node
+          entity_field: changed
+          plugin_id: date
+          order: DESC
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          value:
+            dexp_portfolio: dexp_portfolio
+      style:
+        type: dexp_portfolio
+        options:
+          filter: true
+          filter_vocabulary: portfolio_category
+          filter_field: field_portfolio_categories
+          col_lg: 3
+          col_md: 3
+          col_sm: 3
+          col_xs: 1
+      row:
+        type: 'entity:node'
+        options:
+          view_mode: dexp_portfolio
+      query:
+        type: views_query
+        options: {  }
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }
+  page:
+    id: page
+    display_title: '3 Columns Portfolio'
+    display_plugin: page
+    position: 1
+    display_options:
+      display_extenders: {  }
+      path: portfolio
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }

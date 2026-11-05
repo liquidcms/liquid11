@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_hourly_rate
+  module:
+    - user
+id: user.user.field_hourly_rate
+field_name: field_hourly_rate
+entity_type: user
+bundle: user
+label: 'Hourly rate'
+description: 'Staff rate used as the unit amount on invoices.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: null
+  prefix: '$'
+  suffix: ''
+field_type: decimal

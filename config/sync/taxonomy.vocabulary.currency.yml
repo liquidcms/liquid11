@@ -1,0 +1,11 @@
+uuid: 1faffe78-6af3-40e2-9092-c1260bc06f28
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: yGO02DQZDNxFLLgNyIP_hj5QMS4hZanvyX9FnAJJ1vQ
+name: Currency
+vid: currency
+description: 'Currency a client is billed in.'
+weight: 12
+new_revision: false

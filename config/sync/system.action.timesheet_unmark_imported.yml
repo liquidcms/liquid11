@@ -1,0 +1,11 @@
+uuid: 158a0cae-7e51-410a-829e-25f1741ba3cb
+langcode: en
+status: true
+dependencies:
+  module:
+    - liquid_timesheets
+id: timesheet_unmark_imported
+label: 'Unmark imported'
+type: timesheet
+plugin: timesheet_unmark_imported
+configuration: {  }

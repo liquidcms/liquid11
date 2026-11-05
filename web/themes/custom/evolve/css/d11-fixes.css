@@ -1,0 +1,19 @@
+/* Small adjustments for differences between D7 and D11 core markup. */
+.visually-hidden { position: absolute !important; clip: rect(1px, 1px, 1px, 1px); overflow: hidden; height: 1px; width: 1px; word-wrap: normal; }
+
+/* drupalexp per-page custom CSS from the D7 theme settings. */
+#section-main-content { padding-bottom: 30px; }
+#block-views-testimonial-block h3 { color: #2d3237; }
+#dexp-layerslider-layer--19 img { border-radius: 12px; }
+
+/* "Why Choose LiquidCMS?": pull the two lists toward the (empty) middle column. */
+@media (min-width: 768px) {
+  #block-block-77 .fa-ul { padding-left: 0 !important; margin-left: auto; margin-right: -100px; width: fit-content; }
+  #block-block-79 .fa-ul { padding-left: 2.14em !important; margin-left: -100px; }
+}
+
+/* Client logos: D7's logo style padded every logo onto a 220x140 white canvas. */
+.view-clients .bxslide { height: 140px; display: flex !important; align-items: center; justify-content: center; }
+
+/* Admin tabs (View / Edit / Delete / Revisions). */
+.evolve-local-tasks { margin: 0 0 20px; padding-left: 0; }

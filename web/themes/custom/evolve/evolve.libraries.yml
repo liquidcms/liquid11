@@ -1,0 +1,70 @@
+# Asset order matches the D7 page so the cascade is unchanged.
+global:
+  css:
+    base:
+      css/d7-core.css: {}
+      vendor/dexp_layerslider/plugins/rs-plugin/css/settings.css: {}
+      vendor/dexp_layerslider/css/layerslider.css: {}
+      vendor/dexp_menu/css/dexp-dropdown.css: {}
+      vendor/libraries/bxslider/jquery.bxslider.css: {}
+      vendor/dexp_animation/css/animate.css: {}
+      vendor/dexp_portfolio/css/portfolio.css: {}
+      vendor/dexp_shortcodes/asset/css/shortcodes.css: {}
+    theme:
+      vendor/drupalexp/assets/css/drupalexp.css: {}
+      vendor/bootstrap/css/bootstrap.min.css: { minified: true }
+      css/bs3-compat.css: {}
+      vendor/font-awesome/css/font-awesome.min.css: { minified: true }
+      vendor/evolve/assets/css/style-preset1.css: {}
+      vendor/evolve/assets/css/styles.css: {}
+      vendor/glightbox/glightbox.min.css: { minified: true }
+      css/d11-fixes.css: {}
+  js:
+    vendor/drupalexp/assets/js/plugins.js: {}
+    vendor/dexp_menu/js/dexp-dropdown.js: {}
+    vendor/libraries/bxslider/jquery.bxslider.min.js: { minified: true }
+    vendor/dexp_views_bxslider/js/dexp_bxslider.js: {}
+    vendor/drupalexp/assets/js/drupalexp-sticky.js: {}
+    vendor/dexp_animation/js/dexp_animation_parallax.js: {}
+    vendor/dexp_animation/js/dexp_animation.js: {}
+    vendor/libraries/appear/jquery.appear.js: {}
+    vendor/bootstrap/js/bootstrap.bundle.min.js: { minified: true }
+    vendor/drupalexp/assets/js/drupalexp-custompadding.js: {}
+    vendor/drupalexp/assets/js/drupalexp.js: {}
+    vendor/drupalexp/assets/js/dexp-smoothscroll.js: {}
+    vendor/evolve/assets/scripts/evolve.js: {}
+    vendor/glightbox/glightbox.min.js: { minified: true }
+    js/evolve-lightbox.js: {}
+    js/evolve-d11.js: {}
+  dependencies:
+    - evolve/jquery-migrate
+    - core/drupal
+    - core/once
+
+# The D7-era plugins (Bootstrap 3, bxslider, Revolution) use APIs removed in jQuery 4.
+jquery-migrate:
+  js:
+    vendor/jquery-migrate/jquery-migrate.min.js: { minified: true, weight: -19 }
+  dependencies:
+    - core/jquery
+
+layerslider:
+  js:
+    vendor/dexp_layerslider/plugins/rs-plugin/js/jquery.themepunch.tools.min.js: { minified: true }
+    vendor/dexp_layerslider/plugins/rs-plugin/js/jquery.themepunch.revolution.min.js: { minified: true }
+    js/evolve-slider.js: {}
+  dependencies:
+    - evolve/global
+
+portfolio:
+  js:
+    vendor/dexp_portfolio/js/jquery.shuffle.js: {}
+    vendor/dexp_portfolio/js/filter.js: {}
+  dependencies:
+    - evolve/global
+
+shortcodes:
+  js:
+    vendor/dexp_shortcodes/asset/js/shortcode.js: {}
+  dependencies:
+    - evolve/global

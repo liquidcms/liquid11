@@ -1,0 +1,8 @@
+name: 'Evolve Views'
+type: module
+description: 'D11 replacements for the drupalexp Views styles used by the Evolve theme (bxslider, portfolio, grid).'
+package: Custom
+core_version_requirement: ^11
+dependencies:
+  - drupal:views
+  - drupal:taxonomy

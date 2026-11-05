@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * bxSlider carousel, same markup as the D7 views-bxslider.tpl.php.
+ */
+#}
+{% if title %}<h3>{{ title }}</h3>{% endif %}
+<div id="{{ slider_id }}" class="dexp-bxslider">
+  {% for slide in slides %}
+    <div class="bxslide">
+      {% for row in slide %}{{ row }}{% endfor %}
+    </div>
+  {% endfor %}
+</div>

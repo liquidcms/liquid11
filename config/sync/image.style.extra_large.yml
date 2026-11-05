@@ -1,0 +1,15 @@
+uuid: cfe49fb2-3247-4781-886d-45cb27c545ed
+langcode: en
+status: true
+dependencies: {  }
+name: extra_large
+label: 'Extra Large'
+effects:
+  f5cb2d7c-92a4-4a65-8632-4b32db9d48f0:
+    uuid: f5cb2d7c-92a4-4a65-8632-4b32db9d48f0
+    id: image_scale
+    weight: 1
+    data:
+      width: 1200
+      height: 1200
+      upscale: false

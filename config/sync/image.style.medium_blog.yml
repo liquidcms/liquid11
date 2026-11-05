@@ -1,0 +1,15 @@
+uuid: 436a8610-9b44-4b95-8dce-20febc4a9ef7
+langcode: en
+status: true
+dependencies: {  }
+name: medium_blog
+label: 'Medium Blog'
+effects:
+  e5592c8b-cc56-4f10-b0a9-2be50f043f47:
+    uuid: e5592c8b-cc56-4f10-b0a9-2be50f043f47
+    id: image_scale_and_crop
+    weight: 2
+    data:
+      width: 320
+      height: 219
+      anchor: center-center

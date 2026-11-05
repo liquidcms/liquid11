@@ -1,0 +1,25 @@
+uuid: be7d32b5-191a-45e8-b5e5-452cb16fd2a8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_tax_percent
+    - taxonomy.vocabulary.tax_rate
+_core:
+  default_config_hash: RTaZMvcsWod9U0POXDAw1az5eOdGPeOScgaUzQymaNs
+id: taxonomy_term.tax_rate.field_tax_percent
+field_name: field_tax_percent
+entity_type: taxonomy_term
+bundle: tax_rate
+label: 'Tax %'
+description: 'e.g. 13 for Ontario HST, 0 for exempt.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0.0
+  max: 100.0
+  prefix: ''
+  suffix: '%'
+field_type: decimal

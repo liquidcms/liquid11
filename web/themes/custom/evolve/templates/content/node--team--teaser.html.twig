@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * Team member card (D7 node--team--teaser.tpl.php).
+ */
+#}
+{% set links = {
+  'field_team_email': ['envelope', 'mailto:', 'envelope'],
+  'field_drupal_profile': ['drupal', '', 'drupal'],
+  'field_team_facebook_link': ['facebook', '', 'facebook'],
+  'field_team_twitter_link': ['twitter', '', 'twitter'],
+  'field_team_google_plus_link': ['gplus', '', 'google-plus'],
+  'field_team_linkedin_link': ['linkedin', '', 'linkedin'],
+} %}
+<div{{ attributes.addClass('node', 'node-team', 'node-teaser', 'clearfix').setAttribute('id', 'node-' ~ node.id) }}>
+  <div class="content">
+    <div class="team">
+      <div class="team-item img-wrp">{{ content.field_team_image }}
+        <div class="overlay"></div>
+        <div class="overlay-wrp">
+          <ul class="social-icons overlay-content">
+            {% for field, l in links %}
+              {% if node[field].value %}
+                <li><a{% if l[1] == '' %} target="_blank"{% endif %} class="{{ l[0] }}" href="{{ l[1] }}{{ node[field].value }}"><i class="fa fa-{{ l[2] }}"></i></a></li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <div class="team-item team-member-info-wrp">
+        <div class="team-name">
+          <h5>{{ label }}</h5>
+          <span>{{ node.field_team_position.value }}</span>
+        </div>
+        <div class="team-about"><p>{{ content.body }}</p></div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>

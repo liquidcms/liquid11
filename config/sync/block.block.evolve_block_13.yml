@@ -1,0 +1,28 @@
+uuid: f5c643af-4f71-4fb0-a304-b0f819bcb923
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:d92059e2-0864-4a8a-a8bc-55e10699671b'
+  module:
+    - block_content
+    - system
+  theme:
+    - evolve
+id: evolve_block_13
+theme: evolve
+region: feature_third
+weight: 0
+provider: null
+plugin: 'block_content:d92059e2-0864-4a8a-a8bc-55e10699671b'
+settings:
+  id: 'block_content:d92059e2-0864-4a8a-a8bc-55e10699671b'
+  label: 'Key Features'
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'
