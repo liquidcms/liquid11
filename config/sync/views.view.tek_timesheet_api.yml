@@ -1,0 +1,184 @@
+uuid: d824b6da-fa7c-4ada-a78f-93ebb7e397c1
+langcode: en
+status: true
+dependencies:
+  module:
+    - basic_auth
+    - datetime
+    - liquid_timesheets
+    - node
+    - rest
+    - serialization
+    - user
+id: tek_timesheet_api
+label: 'TEK timesheet API'
+module: views
+description: 'JSON feed of TEK Systems timesheet entries for the weekly timesheet automation (basic auth).'
+tag: ''
+base_table: timesheet
+base_field: id
+display:
+  default:
+    id: default
+    display_title: Default
+    display_plugin: default
+    position: 0
+    display_options:
+      title: 'TEK timesheet API'
+      fields:
+        work_date:
+          id: work_date
+          table: timesheet
+          field: work_date
+          entity_type: timesheet
+          entity_field: work_date
+          plugin_id: field
+          label: ''
+          type: datetime_default
+        hours:
+          id: hours
+          table: timesheet
+          field: hours
+          entity_type: timesheet
+          entity_field: hours
+          plugin_id: field
+          label: ''
+        description:
+          id: description
+          table: timesheet
+          field: description
+          entity_type: timesheet
+          entity_field: description
+          plugin_id: field
+          label: ''
+      pager:
+        type: none
+        options:
+          offset: 0
+      exposed_form:
+        type: basic
+        options:
+          submit_button: Apply
+          reset_button: false
+      access:
+        type: perm
+        options:
+          perm: 'view any timesheets'
+      cache:
+        type: none
+        options: {  }
+      sorts:
+        work_date:
+          id: work_date
+          table: timesheet
+          field: work_date
+          entity_type: timesheet
+          entity_field: work_date
+          plugin_id: datetime
+          order: ASC
+          granularity: day
+        id:
+          id: id
+          table: timesheet
+          field: id
+          entity_type: timesheet
+          entity_field: id
+          plugin_id: standard
+          order: ASC
+      relationships:
+        project:
+          id: project
+          table: timesheet
+          field: project
+          entity_type: timesheet
+          entity_field: project
+          plugin_id: standard
+          required: true
+        client:
+          id: client
+          table: timesheet_project
+          field: client
+          relationship: project
+          entity_type: timesheet_project
+          entity_field: client
+          plugin_id: standard
+          required: true
+      filters:
+        client_title:
+          id: client_title
+          table: node_field_data
+          field: title
+          relationship: client
+          entity_type: node
+          entity_field: title
+          plugin_id: string
+          operator: '='
+          value: 'TEK Systems'
+          exposed: false
+        work_date:
+          id: work_date
+          table: timesheet
+          field: work_date
+          entity_type: timesheet
+          entity_field: work_date
+          plugin_id: datetime
+          operator: between
+          value:
+            min: ''
+            max: ''
+            value: ''
+            type: date
+          exposed: true
+          expose:
+            operator_id: date_op
+            label: Date
+            identifier: date
+            remember: false
+            multiple: false
+      display_extenders: {  }
+    cache_metadata:
+      max-age: 0
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - request_format
+        - url
+        - user.permissions
+      tags: {  }
+  rest_export_1:
+    id: rest_export_1
+    display_title: 'REST export'
+    display_plugin: rest_export
+    position: 1
+    display_options:
+      style:
+        type: serializer
+        options:
+          formats:
+            json: json
+      row:
+        type: data_field
+        options:
+          field_options:
+            work_date:
+              alias: date
+              raw_output: true
+            hours:
+              alias: hours
+              raw_output: true
+            description:
+              alias: description
+              raw_output: true
+      display_extenders: {  }
+      path: api/timesheet/tek
+      auth:
+        - basic_auth
+    cache_metadata:
+      max-age: 0
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - request_format
+        - url
+        - user.permissions
+      tags: {  }

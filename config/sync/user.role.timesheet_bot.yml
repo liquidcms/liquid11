@@ -1,0 +1,12 @@
+uuid: efee512b-a5a8-4317-99a6-37e8ea45dfac
+langcode: en
+status: true
+dependencies:
+  module:
+    - liquid_timesheets
+id: timesheet_bot
+label: 'Timesheet bot'
+weight: 5
+is_admin: false
+permissions:
+  - 'view any timesheets'
