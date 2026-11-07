@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.clients.body
     - field.field.node.clients.field_currency
     - field.field.node.clients.field_image
+    - field.field.node.clients.field_skip_invoice_number
     - field.field.node.clients.field_tax_rate
     - node.type.clients
   module:
@@ -31,4 +32,5 @@ content:
 hidden:
   field_currency: true
   field_image: true
+  field_skip_invoice_number: true
   field_tax_rate: true

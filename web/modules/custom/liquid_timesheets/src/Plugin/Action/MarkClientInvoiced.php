@@ -6,6 +6,7 @@ namespace Drupal\liquid_timesheets\Plugin\Action;
 
 use Drupal\Core\Action\Attribute\Action;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\liquid_timesheets\InvoiceNumber;
 
 /**
  * Mark client invoiced, then move on to the next invoice number.
@@ -24,14 +25,38 @@ class MarkClientInvoiced extends InvoicedFlagActionBase {
   protected const VALUE = TRUE;
 
   /**
+   * Client field that, when ticked, stops the invoice number moving on.
+   */
+  public const SKIP_FIELD = 'field_skip_invoice_number';
+
+  /**
    * {@inheritdoc}
    *
-   * One bulk run is one invoice, so the number goes up once.
+   * One bulk run is one invoice, so the number goes up once, unless every
+   * timesheet in the run belongs to a client that isn't invoiced through
+   * Xero (e.g. Tek Systems).
    */
   public function executeMultiple(array $entities): void {
     parent::executeMultiple($entities);
-    $config = \Drupal::configFactory()->getEditable('liquid_timesheets.settings');
-    $config->set('next_invoice_number', (int) $config->get('next_invoice_number') + 1)->save();
+    foreach ($entities as $entity) {
+      if (!static::skipsInvoiceNumber($entity)) {
+        InvoiceNumber::increment();
+        return;
+      }
+    }
+  }
+
+  /**
+   * Whether a timesheet's client has "Don't advance invoice number" ticked.
+   *
+   * @param \Drupal\liquid_timesheets\Entity\Timesheet $timesheet
+   *   The timesheet.
+   */
+  public static function skipsInvoiceNumber($timesheet): bool {
+    $client = $timesheet->get('project')->entity?->get('client')->entity;
+    return $client
+      && $client->hasField(self::SKIP_FIELD)
+      && (bool) $client->get(self::SKIP_FIELD)->value;
   }
 
 }

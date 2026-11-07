@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Drupal\liquid_timesheets\Plugin\views\field;
 
 use Drupal\Core\Cache\CacheableDependencyInterface;
+use Drupal\liquid_timesheets\InvoiceNumber;
 use Drupal\views\Attribute\ViewsField;
 use Drupal\views\Plugin\views\field\FieldPluginBase;
 use Drupal\views\ResultRow;
 
 /**
- * The "Next invoice number" setting, for invoice exports.
+ * The next invoice number, for invoice exports.
  */
 #[ViewsField('liquid_timesheets_next_invoice_number')]
 class NextInvoiceNumber extends FieldPluginBase implements CacheableDependencyInterface {
@@ -24,7 +25,7 @@ class NextInvoiceNumber extends FieldPluginBase implements CacheableDependencyIn
    * {@inheritdoc}
    */
   public function render(ResultRow $values): string {
-    return (string) \Drupal::config('liquid_timesheets.settings')->get('next_invoice_number');
+    return (string) InvoiceNumber::get();
   }
 
   /**
@@ -38,7 +39,7 @@ class NextInvoiceNumber extends FieldPluginBase implements CacheableDependencyIn
    * {@inheritdoc}
    */
   public function getCacheTags(): array {
-    return ['config:liquid_timesheets.settings'];
+    return [InvoiceNumber::CACHE_TAG];
   }
 
   /**

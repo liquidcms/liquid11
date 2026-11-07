@@ -8,6 +8,7 @@
 declare(strict_types=1);
 
 use Drupal\Core\Config\FileStorage;
+use Drupal\liquid_timesheets\InvoiceNumber;
 use Drupal\taxonomy\Entity\Term;
 
 /**
@@ -30,7 +31,10 @@ function liquid_timesheets_install(bool $is_syncing): void {
   $repo->getFormDisplay('node', 'clients')
     ->setComponent('field_tax_rate', ['type' => 'options_select', 'weight' => 21])
     ->setComponent('field_currency', ['type' => 'options_select', 'weight' => 22])
+    ->setComponent('field_skip_invoice_number', ['type' => 'boolean_checkbox', 'weight' => 23, 'settings' => ['display_label' => TRUE]])
     ->save();
+
+  InvoiceNumber::set(8200);
 
   $repo->getFormDisplay('user', 'user')
     ->setComponent('field_full_name', ['type' => 'string_textfield', 'weight' => -10])
@@ -97,4 +101,22 @@ function liquid_timesheets_update_11004(): void {
   if (!$config->isNew() && $config->get('display.xero_csv')) {
     $config->set('display.xero_csv.display_options.export_filesystem', 'public')->save();
   }
+}
+
+/**
+ * Moves the next invoice number from config to State.
+ *
+ * Run before "drush cim": the config object is gone from config/sync, so an
+ * import first would delete it, number and all.
+ */
+function liquid_timesheets_update_11005(): string {
+  $config = \Drupal::configFactory()->getEditable('liquid_timesheets.settings');
+  $number = $config->get('next_invoice_number');
+  if ($number !== NULL && InvoiceNumber::get() === NULL) {
+    InvoiceNumber::set((int) $number);
+  }
+  if (!$config->isNew()) {
+    $config->delete();
+  }
+  return (string) t('Next invoice number is now @n (stored in State).', ['@n' => InvoiceNumber::get() ?? 'unset']);
 }

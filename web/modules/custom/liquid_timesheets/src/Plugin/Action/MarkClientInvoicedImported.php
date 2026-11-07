@@ -8,7 +8,8 @@ use Drupal\Core\Action\Attribute\Action;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
- * Mark client invoiced and imported in one go (bumps the invoice number).
+ * Mark client invoiced and imported in one go (bumps the invoice number
+ * like MarkClientInvoiced, with the same per-client skip).
  */
 #[Action(
   id: 'timesheet_mark_client_invoiced_imported',
