@@ -46,7 +46,7 @@ display:
         description:
           id: description
           table: timesheet
-          field: description
+          field: description__value
           entity_type: timesheet
           entity_field: description
           plugin_id: field
