@@ -427,6 +427,33 @@ display:
     display_plugin: page
     position: 1
     display_options:
+      sorts:
+        work_date:
+          id: work_date
+          table: timesheet
+          field: work_date
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: timesheet
+          entity_field: work_date
+          plugin_id: datetime
+          order: DESC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
+          granularity: day
+        changed:
+          id: changed
+          table: timesheet
+          field: changed
+          entity_type: timesheet
+          entity_field: changed
+          plugin_id: date
+          order: ASC
+      defaults:
+        sorts: false
       display_extenders: {  }
       path: admin/content/billing
       menu:
